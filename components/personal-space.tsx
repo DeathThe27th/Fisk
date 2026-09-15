@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { FormEvent, useEffect, useState } from "react";
-import { usePrivy } from "@privy-io/react-auth";
+import { useAuth as usePrivy } from "@/components/auth-context";
 import { ArrowUpRight, FileText, ShieldCheck, Sparkles } from "@/components/icons";
 type Mode="watchlist"|"journal"|"settings";
 const interests=["AI & semiconductors","Crypto & exchanges","Consumer technology","Finance & fintech","Energy & industrials","Everyday brands"];

@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { usePrivy } from "@privy-io/react-auth";
+import { useAuth as usePrivy } from "@/components/auth-context";
 import { Brand } from "@/components/brand";
 import { ArrowUpRight, ShieldCheck } from "@/components/icons";
 

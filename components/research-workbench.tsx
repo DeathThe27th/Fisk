@@ -1,7 +1,7 @@
 "use client";
 import { FormEvent, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
-import { usePrivy } from "@privy-io/react-auth";
+import { useAuth as usePrivy } from "@/components/auth-context";
 import type { ResearchResult } from "@/lib/types";
 import { demoCandles, demoResearch } from "@/lib/demo";
 import { ArrowUpRight, ExternalLink, FileText, Newspaper, ShieldCheck } from "@/components/icons";
