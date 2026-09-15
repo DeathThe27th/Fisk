@@ -1,15 +1,15 @@
+import Link from "next/link";
+import { PanelLeft } from "lucide-react";
 import { Brand } from "@/components/brand";
 import { AuthButton } from "@/components/auth-button";
-import { Search } from "@/components/icons";
-import { ResearchWorkbench } from "@/components/research-workbench";
+import { NewsChat } from "@/components/news-chat";
+import { getCompanyNews } from "@/lib/providers/finnhub";
 
-const watches=[["NVDA","$199.34","+1.74%"],["TSLA","$421.18","−0.61%"],["AAPL","$238.24","+0.22%"],["COIN","$312.90","+2.06%"]];
-
-export default async function Desk({searchParams}:{searchParams:Promise<{q?:string}>}) {
+export default async function Desk({searchParams}:{searchParams:Promise<{q?:string}>}){
   const {q}=await searchParams;
-  const question=q||"How exposed is NVDA to this weekend’s semiconductor news, what is the market pricing in, and what would invalidate the bullish thesis?";
-  return <main className="desk desk-v2">
-    <header className="desk-topbar"><Brand/><div className="desk-symbol"><Search size={14}/><b>NVDA</b><span>NVIDIA Corporation</span></div><div className="desk-actions"><AuthButton/></div></header>
-    <div className="desk-grid"><aside className="desk-rail"><h2>WATCHLIST</h2>{watches.map(([ticker,price,delta],i)=><div className={`watch-item ${i===0?"active":""}`} key={ticker}><b>{ticker}</b><span>{price}</span><em className={delta.startsWith("+")?"up":"down"}>{delta}</em></div>)}<h2 style={{marginTop:28}}>RESEARCH LENS</h2><div className="lens-note">Weekend catalyst<br/><span>Underlying + rToken</span></div></aside><ResearchWorkbench initialQuery={question}/></div>
-  </main>;
+  const question=q??"";
+  const ticker=question.toUpperCase().match(/\b[A-Z]{1,5}\b/)?.[0]??"NVDA";
+  const now=new Date();
+  const feed=await getCompanyNews(ticker,new Date(now.getTime()-14*864e5).toISOString().slice(0,10),now.toISOString().slice(0,10));
+  return <main className="fisk-chat-page"><aside className="chat-sidebar"><div><PanelLeft size={18}/><Brand/></div><Link href="/desk">New research</Link><nav><span>RECENT</span>{question&&<Link href={`/desk?q=${encodeURIComponent(question)}`}>{question}</Link>}</nav><footer><AuthButton/></footer></aside><div className="chat-main"><header><Link href="/">Fisk</Link><span>News research</span><AuthButton/></header><NewsChat initialQuestion={question} initialNews={feed.items} initialError={feed.error}/></div></main>;
 }

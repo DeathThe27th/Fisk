@@ -4,6 +4,7 @@ import "@fontsource-variable/jetbrains-mono";
 import "./globals.css";
 import "./extended.css";
 import "./redesign.css";
+import "@designcodeio/threeui/style.css";
 import { Providers } from "@/components/providers";
 
 export const metadata: Metadata = {
