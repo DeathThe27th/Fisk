@@ -19,10 +19,15 @@ for (const shot of [
   await page.close();
 }
 
-const desk = await browser.newPage({ viewport: { width: 1440, height: 1000 }, colorScheme: "dark" });
-await desk.goto("http://127.0.0.1:3000/desk", { waitUntil: "networkidle", timeout: 120_000 });
-await desk.screenshot({ path: ".impeccable/review/desk.png", fullPage: true });
-console.log(`desk: ${await desk.title()} — ${await desk.locator("body").innerText().then((text) => text.length)} text characters`);
-await desk.close();
+for (const shot of [
+  { name: "desk", width: 1440, height: 1000 },
+  { name: "desk-mobile", width: 390, height: 844 },
+]) {
+  const desk = await browser.newPage({ viewport: { width: shot.width, height: shot.height }, colorScheme: "dark" });
+  await desk.goto("http://127.0.0.1:3000/desk", { waitUntil: "networkidle", timeout: 120_000 });
+  await desk.screenshot({ path: `.impeccable/review/${shot.name}.png`, fullPage: true });
+  console.log(`${shot.name}: ${await desk.title()} — ${await desk.locator("body").innerText().then((text) => text.length)} text characters`);
+  await desk.close();
+}
 
 await browser.close();

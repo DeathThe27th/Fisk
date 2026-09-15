@@ -1,134 +1,110 @@
 ---
 name: Fisk
-description: An evidence observatory for decision-ready market research.
+description: A constellation evidence field and restrained news-research workspace.
 colors:
-  spectral-violet: "#6357e8"
-  spectral-violet-deep: "#4b41c2"
-  mineral-paper: "#f2f0e9"
-  bright-paper: "#faf9f5"
-  charcoal-ink: "#161719"
-  graphite: "#111315"
-  graphite-raised: "#181b1e"
-  graphite-line: "#2a2e32"
-  evidence-green: "#147a68"
-  risk-red: "#b65545"
-  session-gold: "#b68b2c"
+  constellation-black: "#05070d"
+  constellation-white: "#f7f8fb"
+  constellation-muted: "#a7adba"
+  evidence-blue: "#8eb9ff"
+  module-blue-pale: "#e9eef8"
+  module-blue-bright: "#c9dcff"
+  module-navy: "#111827"
+  module-slate: "#171b24"
+  desk-canvas: "#f7f7f5"
+  desk-ground: "#ededeb"
+  desk-ink: "#171816"
+  desk-sidebar: "#0a0c11"
+  desk-line: "#e4e4df"
+  error-surface: "#f3e5e1"
+  error-ink: "#813c2f"
 typography:
-  display:
-    fontFamily: "Manrope Variable, sans-serif"
-    fontSize: "clamp(4rem, 6.4vw, 6.1875rem)"
-    fontWeight: 600
-    lineHeight: 0.94
-    letterSpacing: "-0.04em"
-  headline:
-    fontFamily: "Manrope Variable, sans-serif"
-    fontSize: "clamp(2.625rem, 5vw, 4.5rem)"
-    fontWeight: 550
-    lineHeight: 1.02
-    letterSpacing: "-0.04em"
-  body:
-    fontFamily: "Manrope Variable, sans-serif"
-    fontSize: "1rem"
-    fontWeight: 400
-    lineHeight: 1.6
-  measurement:
-    fontFamily: "JetBrains Mono Variable, monospace"
-    fontSize: "0.625rem"
-    fontWeight: 500
-    lineHeight: 1
-rounded:
-  control: "9px"
-  module: "12px"
-  surface: "15px"
-  pill: "999px"
-spacing:
-  tight: "8px"
-  module: "20px"
-  section: "140px"
+  display: { fontFamily: "Manrope Variable, sans-serif", fontSize: "clamp(62px, 8.5vw, 122px)", fontWeight: 560, lineHeight: 0.89, letterSpacing: "-0.04em" }
+  headline: { fontFamily: "Manrope Variable, sans-serif", fontSize: "clamp(48px, 6vw, 80px)", fontWeight: 560, lineHeight: 0.95, letterSpacing: "-0.04em" }
+  body: { fontFamily: "Manrope Variable, sans-serif", fontSize: "15px", fontWeight: 400, lineHeight: 1.6 }
+  label: { fontFamily: "JetBrains Mono Variable, monospace", fontSize: "9px", fontWeight: 550, lineHeight: 1, letterSpacing: "0.08em" }
+rounded: { compact: "9px", control: "10px", card: "13px", module: "15px", composer: "16px", canvas: "18px", pill: "999px" }
+spacing: { micro: "8px", compact: "10px", card-gap: "14px", module: "28px", shell-gutter: "32px", section: "150px" }
 components:
-  button-primary:
-    backgroundColor: "{colors.charcoal-ink}"
-    textColor: "{colors.bright-paper}"
-    rounded: "{rounded.pill}"
-    height: "44px"
-    padding: "0 18px"
-  card-light:
-    backgroundColor: "{colors.bright-paper}"
-    textColor: "{colors.charcoal-ink}"
-    rounded: "{rounded.surface}"
-  card-dark:
-    backgroundColor: "{colors.graphite-raised}"
-    textColor: "{colors.mineral-paper}"
-    rounded: "{rounded.module}"
+  landing-primary-action: { backgroundColor: "#ffffff", textColor: "#080a10", rounded: "{rounded.pill}", height: "46px", padding: "0 19px" }
+  landing-secondary-action: { backgroundColor: "rgba(8,11,18,.72)", textColor: "{colors.constellation-white}", rounded: "{rounded.pill}", height: "46px", padding: "0 19px" }
+  evidence-card: { backgroundColor: "{colors.module-navy}", textColor: "{colors.constellation-white}", rounded: "{rounded.module}", padding: "28px" }
+  news-card: { backgroundColor: "#ffffff", textColor: "{colors.desk-ink}", rounded: "{rounded.card}", padding: "17px 18px" }
+  chat-composer: { backgroundColor: "#ffffff", textColor: "{colors.desk-ink}", rounded: "{rounded.composer}", padding: "12px 12px 27px 17px" }
 ---
 
 # Design System: Fisk
 
 ## Overview
 
-**Creative North Star: “The Evidence Observatory”**
+**Creative North Star: “The Constellation Evidence Field”**
 
-Fisk turns market questions into observable evidence bands. Public pages feel like an authored journal printed on mineral paper; the research desk reverses into graphite for concentrated analysis. Spectral violet marks questions, synthesis, and active controls while evidence status retains distinct green, red, and gold signals.
+Fisk pairs two related environments. The public landing is an immersive black evidence field: the exact ThreeUI particle-network surrounds a centered declarative promise, while raised asymmetric blue modules turn the abstract constellation into concrete principles. `/desk` is calm, light, and conversational, with a dark navigation rail and the restraint of a focused writing tool.
 
-**Key Characteristics:** monumental editorial claims, precise instrument labels, asymmetrical story composition, circular observation geometry, and honest source states.
+This direction comes from the pinned user checkpoint dated **2026-09-15**, not a FORM seed, and replaces the previous mineral-paper observatory world. PRODUCT.md remains authoritative: the voice is precise and evidence-led, current reporting stays source-linked, and missing providers produce honest empty or error states rather than fabricated content.
+
+**Key Characteristics:** centered cosmic hero, cool-blue dimensional modules, news-first evidence, quiet light workspace, dark desktop rail, restrained type, and explicit human control.
 
 ## Colors
 
-The palette moves between warm mineral paper and dense graphite with one controlled spectral accent.
+The landing uses near-black space, white type, and cool evidence blues; the desk inverts to an off-white canvas with a near-black sidebar.
 
-- **Spectral Violet** (`#6357e8`): active questions, selected states, and synthesis emphasis.
-- **Mineral Paper** (`#f2f0e9`): primary editorial field.
-- **Charcoal Ink** (`#161719`): public text and dark actions.
-- **Graphite** (`#111315`): research desk field.
-- **Evidence Green / Risk Red / Session Gold**: semantic data states that always appear with text.
+- **Constellation Black** (`#05070d`): landing field and particle-network ground.
+- **Evidence Blue** (`#8eb9ff`): brand bars, status dots, control geometry, and highlights.
+- **Pale / Bright Evidence Blue** (`#e9eef8` / `#c9dcff`): large editorial and balance modules.
+- **Evidence Navy / Control Slate** (`#111827` / `#171b24`): raised dark landing modules.
+- **Desk Ground / Canvas / Ink** (`#ededeb` / `#f7f7f5` / `#171816`): quiet workspace frame, surface, and text.
+- **Desk Sidebar / Line** (`#0a0c11` / `#e4e4df`): desktop navigation and subtle division.
+- **Error Surface / Ink** (`#f3e5e1` / `#813c2f`): candid provider failure messaging.
 
-**The Spectral Rarity Rule.** Violet identifies attention or active reasoning; it does not wash whole surfaces.
+**The Evidence Blue Rule.** Blue connects signals and selected details; it does not become a generic full-screen wash.
 
 ## Typography
 
-Manrope carries editorial voice and large claims. JetBrains Mono is reserved for prices, timestamps, source states, symbols, and compact instrument controls.
+**Display and body:** Manrope Variable. **Labels and metadata:** JetBrains Mono Variable.
 
-- **Display:** 600 weight, up to 99px, 0.94 line height, `-0.04em` tracking.
-- **Section headline:** 550 weight, 42–72px, 1.02 line height.
-- **Body:** 15–18px with 1.6 line height and restrained measure.
-- **Measurement:** 7–11px mono with medium weight.
+Manrope keeps both worlds direct and contemporary. JetBrains Mono is reserved for source metadata, dates, status labels, and system-like evidence markers.
 
-**The Two Voices Rule.** Prose stays in Manrope; values and machine states earn monospace.
+- **Hero display:** 560, `clamp(62px, 8.5vw, 122px)`, 0.89 line height; 53px on narrow phones.
+- **Landing headline:** approximately 510–580, `clamp(48px, 6vw, 80px)`, 0.95.
+- **Desk headline:** 42px/1.05; 34px on narrow phones.
+- **Body:** 14–17px with 1.5–1.65 line height and restrained measure.
+- **Evidence label:** 8–9px mono, medium to semibold, often uppercase.
+
+**The Two Voices Rule.** Natural language uses Manrope; compact source and machine state earns monospace.
 
 ## Layout
 
-Public pages use a centered container capped at 1320px with generous 140px section separation. Composition favors one dominant story beside narrower evidence modules. The desk uses a three-column rail, canvas, and activity panel; under 1050px the watch rail drops, and under 720px the desk becomes one column with the composer fixed above the bottom edge.
+Landing content uses a centered 1320px shell with 32px desktop gutters. The hero fills at least one small viewport height and centers copy over the full-bleed constellation. Evidence uses an asymmetric three-column, two-row bento with a 14px gap and 150px vertical breathing room. At 820px it becomes two columns; at 560px modules stack and hero actions turn vertical.
+
+The desk is a fixed-height two-column shell: a 260px dark sidebar beside one flexible light canvas. Conversation and composer share a 760px maximum measure. At 820px the sidebar disappears and the canvas becomes an edge-to-edge, prioritized single column.
 
 ## Elevation & Depth
 
-Most structure comes from tonal layers and one-pixel dividers. Shadows belong to raised input, aperture, packet, drawer, and floating-composer surfaces; they use a visible vertical offset and soft blur.
+The landing is dimensional: the particle field creates atmospheric depth, the nav uses translucent blur, and bento modules lift 7px on hover. Resting bento shadow is `0 26px 70px -38px rgba(0,0,0,.9)`; hover becomes `0 38px 88px -38px rgba(73,115,190,.38)`. The desk is flatter; its composer uses `0 18px 50px -25px rgba(22,25,30,.3)` and news cards gain only a small hover lift.
+
+**The Split-Depth Rule.** Public evidence may feel atmospheric and raised; desk depth exists only to clarify interactive layers.
 
 ## Shapes
 
-Circular apertures and dots describe observation and status. Functional modules use 12–15px corners, inputs use 9–15px corners, and full pills are limited to compact actions, filters, and freshness badges.
+Full pills identify top-level actions. Bento modules use 15px corners, news cards 13px, composer and message bubbles 16px, and compact controls 9–11px. The desk canvas uses an 18px leading edge against the sidebar. Concentric circles are a signature human-control motif; the brand retains its three rotated rounded bars.
 
 ## Components
 
-- **Buttons:** compact, high-contrast, fully rounded actions with a small upward hover response and clear violet focus outline.
-- **Cards:** editorial modules use flat paper tones; desk modules use stepped graphite tones and sparse borders.
-- **Inputs:** bright paper or raised graphite fields with visible borders, 9–15px corners, and violet focus state.
-- **Evidence objects:** directly addressable rows with provider, timestamp, freshness, and source link.
-- **Market chart:** full-width instrument panel with mono controls and text-labelled freshness.
-- **Navigation:** quiet text links on public pages; the desk reserves navigation density for symbols and current context.
+- **Landing actions:** 46px full pills; primary is white/near-black, secondary is translucent near-black with a quiet white border and blur.
+- **Bento:** asymmetric, cool-blue or navy/slate, 15px clipped corners, strong elevation, and distinct internal compositions. Never normalize it into repeated equal cards.
+- **News cards:** white, 13px radius, one-pixel neutral border, 17px by 18px padding; publisher and date precede headline and summary.
+- **Composer:** one floating white 760px field with 16px corners and a 36px square send control. No model picker or reasoning control.
+- **Navigation:** a translucent centered landing pill; a 260px near-black desktop desk rail; a minimal 56px light desk header on mobile.
+- **Constellation field:** exact ThreeUI `ConstellationField` `particle-network`, dark and full bleed, behind centered copy and the established radial scrim.
+- **Empty/error states:** plainly name source absence or provider failure and never substitute illustrative stories.
 
 ## Do's and Don'ts
 
-### Do
-
-- **Do** pair every market colour with a written direction or state.
-- **Do** let one story or research question dominate each viewport.
-- **Do** preserve source, freshness, and uncertainty near every material claim.
-- **Do** reflow mobile into a prioritized sequence rather than shrinking the desktop grid.
-
-### Don't
-
-- **Don't** use violet as general decoration or a full-page wash.
-- **Don't** use monospace for editorial prose.
-- **Don't** imply trading, custody, certainty, or unlabelled live data.
-- **Don't** replace the varied evidence hierarchy with repeated equal cards.
-
+- **Do** keep the landing centered, dark, atmospheric, and CTA-only in the hero.
+- **Do** preserve publisher links, timestamps, uncertainty, error language, and honest empty states.
+- **Do** make evidence modules asymmetric, dimensional, and individually composed.
+- **Do** keep `/desk` news-first, restrained, and single-column on mobile.
+- **Don't** revive the old mineral-paper observatory direction, charts, dense terminal furniture, model selectors, or reasoning controls.
+- **Don't** put a chat composer on the landing page.
+- **Don't** fabricate demo headlines, fallback data, testimonials, or performance claims.
+- **Don't** use crypto-casino neon or decorative market signals without evidence meaning.

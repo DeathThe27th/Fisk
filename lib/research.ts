@@ -3,7 +3,6 @@ import { getRtokenMapping, getRtokenTransactions, getRwaCandles, getRwaStock } f
 import { getCompanyNews } from "@/lib/providers/finnhub";
 import { getCompanyFacts, getRecentFilings } from "@/lib/providers/sec";
 import { synthesizeResearch } from "@/lib/ai/qwen";
-import { demoResearch } from "@/lib/demo";
 import type { Evidence, ResearchResult } from "@/lib/types";
 
 export const ResearchRequestSchema=z.object({query:z.string().min(8).max(1200),ticker:z.string().regex(/^[A-Za-z.]{1,8}$/).default("NVDA")});
@@ -25,6 +24,6 @@ export async function runResearch(input:z.infer<typeof ResearchRequestSchema>):P
   if(news.status==="fulfilled"){news.value.items.slice(0,8).forEach(item=>evidence.push({id:item.id,provider:item.source,title:item.headline,sourceUrl:item.sourceUrl,summary:item.summary||item.impact,publishedAt:item.publishedAt,fetchedAt:item.fetchedAt,freshness:item.freshness}));activity.push({tool:"get_company_news",state:news.value.error?"partial":"complete",summary:`Normalized ${news.value.items.length} company-news items.`})}else activity.push({tool:"get_company_news",state:"failed",summary:"Company news unavailable."});
   if(filings.status==="fulfilled"){filings.value.items.slice(0,5).forEach(item=>evidence.push({id:item.id,provider:"SEC EDGAR",title:item.title,sourceUrl:item.sourceUrl,summary:`Official ${item.form} filing metadata for ${ticker}.`,publishedAt:item.filedAt,fetchedAt:item.fetchedAt,freshness:item.freshness}));activity.push({tool:"get_recent_filings",state:filings.value.error?"partial":"complete",summary:`Loaded ${filings.value.items.length} recent filing records.`})}else activity.push({tool:"get_recent_filings",state:"failed",summary:"SEC filings unavailable."});
   activity.push({tool:"self_review",state:"complete",summary:"Checked evidence freshness, counterarguments, unsupported claims, and unknowns."});
-  if(!evidence.length)return{...demoResearch,activity};
-  try{return await synthesizeResearch(query,evidence,activity)}catch{return{...demoResearch,evidence,activity,directAnswer:`Live evidence was gathered, but synthesis is temporarily unavailable. ${demoResearch.directAnswer}`,asOf:new Date().toISOString()}}
+  if(!evidence.length)throw new Error("No current evidence is available. Check the configured news and filing providers.");
+  try{return await synthesizeResearch(query,evidence,activity)}catch{throw new Error("Current evidence was gathered, but synthesis is temporarily unavailable.")}
 }

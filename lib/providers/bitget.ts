@@ -5,7 +5,6 @@ import { z } from "zod";
 import { serverEnv } from "@/lib/env";
 import { cached, stale } from "@/lib/cache";
 import { CandleSchema, type Candle } from "@/lib/types";
-import { demoCandles } from "@/lib/demo";
 
 let singleton: BitgetWalletApiClient | undefined;
 function client() {
@@ -54,6 +53,6 @@ export async function getRwaCandles(ticker:string,period:"5m"|"15m"|"1h"|"4h"|"1
   } catch(error) {
     const old=stale<Candle[]>(key);
     if(old) return {candles:old.value,freshness:"delayed" as const,updatedAt:new Date(old.storedAt).toISOString(),source:"Bitget Wallet RWA"};
-    return {candles:demoCandles,freshness:"demo" as const,updatedAt:"2026-09-15T12:00:00.000Z",source:"Fisk demo snapshot",error:error instanceof Error?error.message:"Provider unavailable"};
+    return {candles:[],freshness:"delayed" as const,updatedAt:new Date().toISOString(),source:"Bitget Wallet RWA",error:error instanceof Error?error.message:"Provider unavailable"};
   }
 }
