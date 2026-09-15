@@ -3,6 +3,7 @@ import "@fontsource-variable/manrope";
 import "@fontsource-variable/jetbrains-mono";
 import "./globals.css";
 import "./extended.css";
+import "./redesign.css";
 import { Providers } from "@/components/providers";
 
 export const metadata: Metadata = {
