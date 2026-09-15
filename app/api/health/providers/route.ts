@@ -1,0 +1,2 @@
+import { NextResponse } from "next/server";
+export function GET(){if(process.env.NODE_ENV==="production")return NextResponse.json({error:"Not found"},{status:404});const names=["BITGET_QWEN_API_KEY","NEXT_PUBLIC_PRIVY_APP_ID","PRIVY_APP_SECRET","NEXT_PUBLIC_SUPABASE_URL","SUPABASE_SERVICE_ROLE_KEY","FINNHUB_API_KEY","BITGET_WALLET_API_KEY","BITGET_WALLET_API_SECRET","SEC_USER_AGENT"];return NextResponse.json({providers:Object.fromEntries(names.map(name=>[name.replace(/(_API)?_KEY|_SECRET|NEXT_PUBLIC_/g,"").toLowerCase(),Boolean(process.env[name])]))})}

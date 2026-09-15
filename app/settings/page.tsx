@@ -1,0 +1,1 @@
+import { AccountShell } from "@/components/account-shell";import { PersonalSpace } from "@/components/personal-space";export default function Settings(){return <AccountShell><PersonalSpace mode="settings"/></AccountShell>}

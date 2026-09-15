@@ -1,0 +1,7 @@
+import { NextResponse } from "next/server";
+import { z } from "zod";
+import { requireUser } from "@/lib/auth";
+import { supabaseAdmin } from "@/lib/supabase";
+const Input=z.object({session_id:z.string().uuid().nullable().optional(),ticker:z.string().regex(/^[A-Za-z.]{1,8}$/).transform(v=>v.toUpperCase()),decision:z.enum(["watching","bullish","bearish","no-action"]),thesis:z.string().min(8).max(4000),confidence:z.enum(["low","medium","high"]),invalidation:z.string().min(3).max(2000),horizon:z.string().max(100).optional(),review_at:z.string().datetime().nullable().optional()});
+export async function GET(request:Request){try{const user=await requireUser(request);const result=await supabaseAdmin().from("journal_entries").select("*").eq("user_id",user.userId).order("created_at",{ascending:false});return NextResponse.json({items:result.data??[]})}catch{return NextResponse.json({error:"Sign in to view your journal."},{status:401})}}
+export async function POST(request:Request){try{const user=await requireUser(request);const input=Input.parse(await request.json());await supabaseAdmin().from("profiles").upsert({user_id:user.userId,updated_at:new Date().toISOString()});const result=await supabaseAdmin().from("journal_entries").insert({...input,user_id:user.userId}).select().single();if(result.error)throw result.error;return NextResponse.json({item:result.data},{status:201})}catch(error){return NextResponse.json({error:error instanceof Error?error.message:"Could not save decision."},{status:400})}}

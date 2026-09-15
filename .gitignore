@@ -1,0 +1,12 @@
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+node_modules/
+.next/
+.vercel/
+*.tsbuildinfo
+.agents/
+.codex/
+.impeccable/review/

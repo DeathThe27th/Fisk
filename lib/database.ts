@@ -1,0 +1,2 @@
+type GenericTable={Row:Record<string,unknown>;Insert:Record<string,unknown>;Update:Record<string,unknown>;Relationships:[]};
+export type Database={public:{Tables:{profiles:GenericTable;preferences:GenericTable;watchlist_items:GenericTable;research_sessions:GenericTable;research_evidence:GenericTable;research_steps:GenericTable;journal_entries:GenericTable};Views:Record<string,never>;Functions:Record<string,never>;Enums:Record<string,never>;CompositeTypes:Record<string,never>}};

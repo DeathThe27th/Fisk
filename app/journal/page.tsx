@@ -1,0 +1,1 @@
+import { AccountShell } from "@/components/account-shell";import { PersonalSpace } from "@/components/personal-space";export default function Journal(){return <AccountShell><PersonalSpace mode="journal"/></AccountShell>}

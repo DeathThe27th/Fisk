@@ -1,0 +1,7 @@
+import { NextResponse } from "next/server";
+import { z } from "zod";
+import { requireUser } from "@/lib/auth";
+import { supabaseAdmin } from "@/lib/supabase";
+const Input=z.object({sectors:z.array(z.string()).max(12),risk_tolerance:z.enum(["conservative","balanced","aggressive"]),horizon:z.enum(["intraday","swing","long-term"]),experience_level:z.enum(["new","intermediate","advanced"]),default_view:z.string().default("desk")});
+export async function GET(request:Request){try{const user=await requireUser(request);const result=await supabaseAdmin().from("preferences").select("*").eq("user_id",user.userId).maybeSingle();return NextResponse.json({preferences:result.data})}catch{return NextResponse.json({error:"Sign in to view preferences."},{status:401})}}
+export async function POST(request:Request){try{const user=await requireUser(request);const input=Input.parse(await request.json());await supabaseAdmin().from("profiles").upsert({user_id:user.userId,updated_at:new Date().toISOString()});const result=await supabaseAdmin().from("preferences").upsert({...input,user_id:user.userId,updated_at:new Date().toISOString()}).select().single();if(result.error)throw result.error;return NextResponse.json({preferences:result.data})}catch(error){return NextResponse.json({error:error instanceof Error?error.message:"Could not save preferences."},{status:400})}}

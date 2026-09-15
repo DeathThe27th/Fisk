@@ -1,0 +1,19 @@
+{
+  "northStar": "The Evidence Observatory",
+  "rules": [
+    "Violet identifies attention or active reasoning.",
+    "Prose uses Manrope; measurements and source states use JetBrains Mono.",
+    "Every market colour is paired with a written state.",
+    "Mobile becomes a prioritized sequence."
+  ],
+  "breakpoints": { "compact": "720px", "medium": "1050px" },
+  "motion": {
+    "control": "transform 200ms ease, background 200ms ease",
+    "reduced": "all animations and transitions collapse to 0.01ms"
+  },
+  "shadows": {
+    "input": "0 13px 35px rgba(29,26,20,.08)",
+    "aperture": "inset 0 0 0 1px #d8d3c5, 0 34px 70px rgba(34,30,21,.09)",
+    "packet": "0 24px 70px rgba(0,0,0,.3)"
+  }
+}
