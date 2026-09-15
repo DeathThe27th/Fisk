@@ -1,0 +1,17 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "layout-transition",
+        "value": "*",
+        "files": [
+          "app/extended.css"
+        ],
+        "createdAt": "2026-09-15T15:33:07.052Z",
+        "reason": "Legacy minified stylesheet only: app/redesign.css overrides the sole padding transition with transform and color transitions, so no layout property animates in the shipped cascade."
+      }
+    ]
+  }
+}
