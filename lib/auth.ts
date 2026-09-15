@@ -1,9 +1,9 @@
 import "server-only";
 import { PrivyClient } from "@privy-io/node";
-import { serverEnv, publicEnv } from "@/lib/env";
+import { requireEnv, requirePublicEnv } from "@/lib/env";
 
 let client:PrivyClient|undefined;
-function privy(){if(!client){const env=serverEnv(),pub=publicEnv();client=new PrivyClient({appId:pub.NEXT_PUBLIC_PRIVY_APP_ID,appSecret:env.PRIVY_APP_SECRET})}return client}
+function privy(){if(!client){client=new PrivyClient({appId:requirePublicEnv("NEXT_PUBLIC_PRIVY_APP_ID"),appSecret:requireEnv("PRIVY_APP_SECRET")})}return client}
 
 export async function authenticate(request:Request){
   const header=request.headers.get("authorization");

@@ -1,11 +1,11 @@
 import "server-only";
 import OpenAI from "openai";
 import { zodTextFormat } from "openai/helpers/zod";
-import { serverEnv } from "@/lib/env";
+import { requireEnv, serverEnv } from "@/lib/env";
 import { ResearchResultSchema, type Evidence, type ResearchResult } from "@/lib/types";
 
 let singleton:OpenAI|undefined;
-function qwen(){if(!singleton){const env=serverEnv();singleton=new OpenAI({apiKey:env.BITGET_QWEN_API_KEY,baseURL:env.QWEN_BASE_URL})}return singleton}
+function qwen(){if(!singleton){const env=serverEnv();singleton=new OpenAI({apiKey:requireEnv("BITGET_QWEN_API_KEY"),baseURL:env.QWEN_BASE_URL,timeout:25_000,maxRetries:0})}return singleton}
 
 export async function synthesizeResearch(query:string,evidence:Evidence[],activity:ResearchResult["activity"]){
   const env=serverEnv();

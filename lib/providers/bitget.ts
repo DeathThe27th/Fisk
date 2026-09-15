@@ -2,15 +2,15 @@ import "server-only";
 import { BitgetWalletApiClient } from "@bitget-wallet/api";
 import { createSigningFetch } from "@bitget-wallet/api/auth";
 import { z } from "zod";
-import { serverEnv } from "@/lib/env";
+import { requireEnv } from "@/lib/env";
 import { cached, stale } from "@/lib/cache";
 import { CandleSchema, type Candle } from "@/lib/types";
 
 let singleton: BitgetWalletApiClient | undefined;
 function client() {
   if (!singleton) {
-    const env = serverEnv();
-    const options={ apiKey:env.BITGET_WALLET_API_KEY, fetch:createSigningFetch({ apiKey:env.BITGET_WALLET_API_KEY, apiSecret:env.BITGET_WALLET_API_SECRET }), timeoutInSeconds:10, maxRetries:2 } as unknown as ConstructorParameters<typeof BitgetWalletApiClient>[0];
+    const apiKey=requireEnv("BITGET_WALLET_API_KEY"),apiSecret=requireEnv("BITGET_WALLET_API_SECRET");
+    const options={ apiKey, fetch:createSigningFetch({ apiKey, apiSecret }), timeoutInSeconds:10, maxRetries:2 } as unknown as ConstructorParameters<typeof BitgetWalletApiClient>[0];
     singleton = new BitgetWalletApiClient(options);
   }
   return singleton;

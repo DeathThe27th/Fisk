@@ -10,3 +10,5 @@ node_modules/
 .agents/
 .codex/
 .impeccable/review/
+.vercel
+.env*
