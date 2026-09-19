@@ -1,123 +1,145 @@
 ---
 name: Fisk
-description: A monochrome market-intelligence atlas built as one evidence-rich research surface.
+description: Cat-led editorial market intelligence in monochrome at 80% interface scale.
 colors:
-  atlas-black: "#050505"
-  ink: "#101010"
-  graphite: "#242424"
-  muted: "#62625e"
-  muted-light: "#aaa"
   paper: "#ffffff"
-  paper-soft: "#f1f1ed"
-  desk-ground: "#ededeb"
-  line: "#d8d8d2"
+  ink: "#232323"
+  olive: "#343434"
+  olive-deep: "#181818"
+  lime: "#ececec"
+  lime-soft: "#f7f7f7"
+  mint: "#e5e5e5"
+  lavender: "#e4e4e4"
+  muted: "#676767"
+  line: "rgba(35,35,35,.12)"
+  graphite: "#141414"
+  graphite-2: "#1f1f1f"
+  desk-text: "#f4f4f4"
+  desk-muted: "#bcbcbc"
+  copilot: "#f2f2f2"
+  positive: "#636363"
+  negative: "#686868"
 typography:
-  display: { fontFamily: "Manrope Variable, sans-serif", fontSize: "clamp(60px, 7.2vw, 96px)", fontWeight: 560, lineHeight: 0.91, letterSpacing: "-0.04em" }
-  headline: { fontFamily: "Manrope Variable, sans-serif", fontSize: "clamp(48px, 6vw, 80px)", fontWeight: 560, lineHeight: 0.95, letterSpacing: "-0.04em" }
-  body: { fontFamily: "Manrope Variable, sans-serif", fontSize: "14px", fontWeight: 400, lineHeight: 1.6 }
-  label: { fontFamily: "JetBrains Mono Variable, monospace", fontSize: "9px", fontWeight: 500, lineHeight: 1, letterSpacing: "normal" }
-rounded: { control: "9px", action: "11px", prompt: "14px", bento: "15px", pill: "999px" }
-spacing: { micro: "8px", compact: "10px", grid: "14px", bento: "28px", shell: "32px", section: "140px" }
+  display: { fontFamily: "Manrope Variable, sans-serif", fontSize: "clamp(56px,5.5vw,80px)", fontWeight: 500, lineHeight: 1.02, letterSpacing: "-0.05em" }
+  headline: { fontFamily: "Manrope Variable, sans-serif", fontSize: "clamp(34px,3.8vw,54px)", fontWeight: 500, lineHeight: 1.07, letterSpacing: "-0.04em" }
+  title: { fontFamily: "Manrope Variable, sans-serif", fontSize: "28px", fontWeight: 500, lineHeight: 1.13, letterSpacing: "-0.03em" }
+  body: { fontFamily: "Manrope Variable, sans-serif", fontSize: "15px", fontWeight: 400, lineHeight: 1.6 }
+  action: { fontFamily: "Manrope Variable, sans-serif", fontSize: "12px", fontWeight: 600 }
+  label: { fontFamily: "JetBrains Mono Variable, monospace", fontSize: "10px" }
+rounded: { evidence: "10px", widget: "12px", article: "14px", panel: "16px", composer: "18px", footer-mobile: "22px", footer: "28px", pill: "999px" }
+spacing: { micro: "8px", compact: "12px", panel-gap: "18px", grid: "20px", article-gap: "22px", panel: "25px", large-panel: "30px", mobile-section: "75px", section: "130px" }
 components:
-  primary-action: { backgroundColor: "{colors.paper}", textColor: "{colors.atlas-black}", rounded: "{rounded.action}", height: "48px", padding: "0 19px" }
-  dark-action: { backgroundColor: "{colors.ink}", textColor: "{colors.paper}", rounded: "{rounded.control}", height: "38px", padding: "0 15px" }
-  light-bento: { backgroundColor: "{colors.paper}", textColor: "{colors.ink}", rounded: "{rounded.bento}", padding: "28px" }
-  dark-bento: { backgroundColor: "{colors.ink}", textColor: "{colors.paper}", rounded: "{rounded.bento}", padding: "22px" }
-  prompt-input: { backgroundColor: "{colors.paper}", textColor: "{colors.ink}", rounded: "{rounded.prompt}", padding: "14px" }
+  button-primary: { backgroundColor: "{colors.olive}", textColor: "{colors.paper}", rounded: "{rounded.pill}", height: "44px", padding: "0 23px" }
+  button-lime: { backgroundColor: "{colors.lime}", textColor: "{colors.ink}", rounded: "{rounded.pill}", height: "44px", padding: "0 23px" }
+  button-white: { backgroundColor: "{colors.paper}", textColor: "{colors.ink}", rounded: "{rounded.pill}", height: "44px", padding: "0 23px" }
+  button-outline: { backgroundColor: "transparent", textColor: "{colors.ink}", rounded: "{rounded.pill}", height: "44px", padding: "0 23px" }
+  mint-panel: { backgroundColor: "{colors.mint}", textColor: "{colors.ink}", rounded: "{rounded.panel}", padding: "25px" }
+  evidence-chip: { backgroundColor: "#f1f1f1", textColor: "{colors.ink}", rounded: "{rounded.pill}", padding: "8px 10px" }
+  hero-input: { backgroundColor: "{colors.paper}", textColor: "{colors.ink}", rounded: "{rounded.pill}", padding: "7px 7px 7px 18px" }
 ---
 
 # Design System: Fisk
 
+## 2026 Desk identity: The Black Cat Market Directory
+
+The Desk is no longer a bento dashboard. Its default state is a wide, warm-white stock directory: compact navigation, a black market wire, a single editorial hero, searchable sector filters, and a dense four-column field of tall stock cards. No chart exists until a user chooses or names an asset.
+
+Fisk is an original solid-black cat with tall ears, large white eyes, a silver brow notch, and an F-shaped tail gesture. The reusable character states are idle, curious, searching, analysing, alert, skeptical, success, and sleeping. Eye blinks and local pointer tracking may add life, but reduced motion removes them and state meaning is always carried by copy.
+
+The selected-stock workspace is calmer and source-led. It uses one line chart, explicit range controls and freshness, followed by reporting and SEC filings. Chat begins as a compact floating control; on desktop it becomes a persistent right rail, and on mobile a full-height conversation surface. Model names, effort controls, chart-type switching, and decorative bento structure are prohibited.
+
+Desk tokens: warm paper `#f3f2ee`, ink `#111111`, hero/cat `#050505`, muted `#686863`, line `#d8d7d2`, positive `#16794b`, negative `#b33a3a`. Manrope remains the interface voice and JetBrains Mono is reserved for tickers, freshness, and compact market metadata. Desk cards use 15–16px corners; pills are reserved for filters and actions.
+
 ## Overview
 
-**Creative North Star: “The Monochrome Market-Intelligence Atlas”**
+**Creative North Star: “The Olive Editorial Research Desk”**
 
-Fisk is one research surface expressed in two tempos. The landing opens in an exact ThreeUI `particle-drift` dark field with a centered statement, then scrolls through black, graphite, grey, and white into lifted monochrome bento terrain. The desk compresses the same world into a dense but calm cockpit: live reporting at upper left, market structure below it, square stock entry points below that, and a long dark copilot on the right.
+Fisk makes evidence approachable through an observant cat identity, open white layouts, tightly set medium-weight type, and small composed research widgets. Charcoal ink and silver highlights connect the public editorial experience to a focused dark charcoal research desk. Distinct grey surfaces distinguish supporting evidence panels rather than becoming status colors.
 
-This direction is the explicit user request of **2026-09-15**. It replaces the prior visual world; no FORM seed applies. The interface stays evidence-led: source links, provider status, uncertainty, and unavailable states are visible, and fabricated fallback content is forbidden. Provider-specific environment requirements stay isolated; Privy is enabled whenever its public app ID exists.
+The supplied video and FISK-VIDEO-UI-BRIEF.md establish the editorial foundation. The approved cat identity refinement preserves its layout, palette, spacing, responsive composition and native scrolling. The visual system serves a precise, calm, evidence-led product: questions lead to cited research, uncertainty stays visible, and the user makes the decision. Product capabilities remain governed by PRODUCT.md and functioning integrations; illustrations are not proof of live coverage or performance.
 
-**Key Characteristics:** monochrome contrast, centered particle hero, black-to-white scroll transition, lifted asymmetric bento, boxed-F identity, compact evidence metadata, calm cockpit density, rich copilot input, and human control.
+**Key Characteristics:**
+
+- Observant cat identity
+- Asymmetric composition
+- Restrained medium-weight headlines
+- Charcoal/silver contrast
+- Soft pills
+- Miniature evidence widgets
+- Tonal depth
+- Readable research density
 
 ## Colors
 
-The palette is deliberately achromatic. Hierarchy comes from contrast, tonal stepping, typography, and elevation—not accent color.
+Charcoal forms the identity; white gives editorial breathing room and silver signals intent.
 
-- **Atlas Black** (`#050505`): hero ground, translucent landing chrome, and the start of the scroll transition.
-- **Ink / Graphite** (`#101010` / `#242424`): primary text, the copilot, and secondary dark bento.
-- **Muted / Muted Light** (`#62625e` / `#aaa`): supporting copy and metadata.
-- **Paper / Soft Paper** (`#ffffff` / `#f1f1ed`): primary cards and quiet landing terrain.
-- **Desk Ground** (`#ededeb`): cockpit canvas behind lifted cards.
-- **Line** (`#d8d8d2`): restrained dividers and reporting rows.
+- **Primary:** charcoal for actions, navigation destinations, FAQ and footer; silver for hero intent, horizon demonstration, and active chart controls.
+- **Secondary:** light grey and silver provide distinct editorial panel surfaces. They do not encode financial gains or losses.
+- **Neutral:** ink and muted text on paper; olive-deep beneath supporting evidence; graphite and graphite-2 on working surfaces, with desk-text and desk-muted for readable content. The light copilot uses its own pale grey surface.
+- **Financial semantics:** preserve positive green and negative red for direction. Source, freshness, and availability must also be stated in text.
 
-**The No Accent Rule.** Do not reintroduce evidence blue, crypto neon, semantic decoration, or tinted gradients. State remains legible through text, icons, contrast, and honest language.
+**The Evidence Stays Visible Rule.** Keep source labels, freshness and honest provider states beside the material they qualify.
 
 ## Typography
 
-**Display and body:** Manrope Variable. **Labels and metadata:** JetBrains Mono Variable.
+Manrope Variable is the display and body family. JetBrains Mono Variable supports tickers, evidence labels and compact counters. Headlines use weight 500, close tracking, and controlled line breaks; body and actions remain quietly legible.
 
-Manrope carries direct editorial statements and compact interface copy. JetBrains Mono is used sparingly for timestamps, provider status, tickers, counts, and machine-like evidence labels.
-
-- **Hero display:** 560, `clamp(60px, 7.2vw, 96px)`, 0.91 line height, `-0.04em`; 50px on narrow phones.
-- **Section headline:** 560, `clamp(48px, 6vw, 80px)`, 0.95 line height.
-- **Desk lead:** `clamp(28px, 3vw, 46px)`, 1.02 line height.
-- **Body:** 12–17px, usually 1.55–1.65 line height, with controlled measure.
-- **Evidence label:** 8–10px monospace; use for metadata rather than body prose.
-
-**The Two Voices Rule.** Human-readable interpretation uses Manrope; compact evidence and system state earn monospace.
+The frontmatter records the desktop hierarchy. At widths up to 1199px the hero is 64px; at widths up to 767px it is 46px and section headings are 35px. Above 1600px the hero is 86px. Marketing display type does not determine desk data density. The horizon value uses tabular digits and a 68px desktop / 58px mobile treatment.
 
 ## Layout
 
-Landing content sits in a centered shell with 32px desktop gutters. The hero is at least `100svh`, full bleed, and centers a statement up to 1040px wide over the particle field. The page background performs the transition from black through graphite and grey to white. Its bento uses three unequal columns, two rows, a 15px gap, and 140px top breathing room; it collapses to two columns at 1040px and a single stack at 640px.
+The desktop editorial shell is at most 1320px, with total horizontal subtraction of 112px. At 1199px and below it subtracts 72px; at 767px and below it subtracts 44px. Native scrolling remains the navigation model.
 
-The desk has 14px outer padding and a sticky 62px navigation bento. Its main grid is `minmax(0, 1fr) 390px`: evidence occupies the left canvas and the copilot owns the long right rail. News begins with a 1.25/0.75 split, followed by the chart and a four-column row of near-square stock tiles. At 1040px the copilot moves first above evidence; at 640px outer gaps reduce to 8px and news becomes one column. This mobile order—copilot, then evidence—is mandatory.
+The hero uses a three-column navigation, lower-left copy, and lower-right white evidence widget. Its warm cat illustration and charcoal gradient establish contrast. Intro panels retain different heights; capability panels use .85/.85/1.3 columns, becoming two columns at tablet and one on mobile. Horizon and FAQ use split compositions; newsroom uses three equal image-first columns before stacking. Large editorial sections commonly use 100–140px spacing, falling to approximately 65–75px on mobile.
+
+Mobile changes composition: the mark moves left, navigation condenses, the hero illustration sits above lower copy, and the evidence widget enters document flow. The desk prioritizes one content column with a fixed collapsible composer at the bottom, 10px inset. Keep content clear of the expanded composer and ensure evidence remains reachable above it.
 
 ## Elevation & Depth
 
-The system uses lifted paper on a tonal ground. The shared raised shadow is `0 24px 60px -34px rgba(0,0,0,.42), 0 4px 14px -7px rgba(0,0,0,.18)`. Landing bentos rise 8px on hover; stock tiles rise 6px. Hero depth comes from particle drift, a radial scrim, translucent navigation, and the tonal transition. The prompt has `0 20px 50px -28px #000` and moves 3px upward on focus. Reduced motion removes nonessential transforms.
+Depth comes mainly from composed imagery, gradients, tonal surfaces and small inset widgets. Resting marketing and desk cards have minimal or no shadows. The connected-evidence photo alone uses a blurred overlay; this is not a general glass treatment.
 
-**The Useful Depth Rule.** Shadows separate functional surfaces and establish terrain; they are never ornamental glow.
+Overlay exceptions are functional: the navigation menu uses `0 12px 40px #00000022`, news drawer `-10px 0 40px #00000022`, research evidence drawer `0 20px 70px #00000066`, and mobile composer `0 8px 35px #00000055`. Do not spread overlay elevation to every panel.
+
+**The Overlay Elevation Rule.** Reserve pronounced shadows for functional overlays and the fixed mobile composer.
 
 ## Shapes
 
-The signature mark is a 28px rounded square containing a geometric F and terminal dot. Bento cards use 15px corners, the prompt and mobile copilot use 14px, compact controls use 8–11px, and source chips alone use full pills. Silhouettes stay rectilinear and architectural; circles are reserved for human-control rings and small status indicators.
+Actions and chips are pills. Evidence widgets use 10–12px corners; article photos use 14px and major panels 16px. The mobile composer uses 18px. The inset footer uses 28px desktop / 22px mobile corners. Borders remain thin and quiet; circular arrow controls provide compact secondary movement.
 
 ## Components
 
-### Actions
-
-- Hero actions are 48px high with 11px corners; the primary is paper on black and the secondary is translucent black with a quiet white border.
-- Desk authentication is a compact black button with 9px corners. Focus uses a 2px `currentColor` outline offset by 4px.
-
-### Bento Surfaces
-
-- Landing modules are unequal and individually composed: white lead, black evidence, warm-grey balance, graphite control.
-- Desk cards are white 15px surfaces on `#ededeb`; preserve the lead-news/chart/stock hierarchy.
-- Never normalize these into a repetitive equal-card grid.
-
-### Fisk Copilot
-
-- The desktop copilot is a sticky 390px-wide, near-viewport-height black bento at right; on compact and mobile layouts it becomes the first surface.
-- Answers show the question, direct answer, thesis, compact findings, and linked provider chips. Loading and errors remain explicit.
-- The restored rich `PromptInput` includes multiline entry, Fisk Qwen identity, toggled research effort, up to four image/PDF attachments, keyboard submission, and a disabled send state. Attachments are described honestly when the run uses only written input.
-
-### News, Chart, and Stock Tiles
-
-- Upper-left live news owns the strongest desk headline; adjacent cards provide two supporting stories with source links.
-- The source-labelled chart sits directly below news. Four near-square stock tiles form the lower row.
-- If providers return nothing, show a candid unavailable/reconnecting state. Never synthesize stories, candles, prices, or claims.
-
-### Navigation and Brand
-
-- Landing navigation is a centered translucent 980px bar over the hero. Desk navigation is a sticky white bento.
-- Use the boxed-F mark with the FISK wordmark; do not restore the former rotated-bar symbol.
+- **Brand mark:** a minimal terminal-like stroke cat head, fine whiskers, light eyes on accented placements, and a notch in the anatomical left ear. Keep the angular outline readable at compact navigation and avatar sizes; use the shared `FiskCatMark` rather than a separate cat glyph.
+- **Brand illustrations:** the same adult olive cat in the master imagery has lime eyes, an ivory muzzle, a notched anatomical left ear, precise whiskers and a hooked tail. `public/images/fisk-observes.png` and `public/images/fisk-examines.png` show a warm walnut research study; use the established hero and two supporting image frames without changing their proportions. Preserve embedded generation prompts as asset provenance. These illustrations establish identity; actual newsroom images remain editorial reporting.
+- **Action restraint:** keep the top and closing blank-desk entries, focused hero question input, contextual horizon/scenario/article research, authentication, original source access and functional navigation. Avoid repeated generic desk buttons and inert affordances. A shared URL alone does not make a useful action redundant; retain distinct context and accessibility controls.
+- **Buttons:** charcoal, silver, white and outlined pill variants share 44px minimum height and 23px horizontal padding. Hover changes tone; arrows move 2px. Visible keyboard focus uses a 2px grey outline with 4px offset.
+- **Inputs:** the hero prompt is a white pill with a silver circular submit control. The working composer is a white bordered field on pale grey, with a charcoal circular send action. Preserve labels, disabled behavior, local attachment notices and real error states.
+- **Chips:** soft olive evidence pills with occasional lime selections; news filters use explicit pressed states. Decorative evidence illustrations must remain identifiable as illustrations.
+- **Cards:** light grey, charcoal, silver and photographic panels have distinct compositions. A white miniature widget can sit inside a colored panel. News cards open a source drawer; their separate Ask Fisk action passes the actual story into research.
+- **Navigation:** centered brand in independent desktop columns, then mark and controls on mobile. Authentication uses light Privy appearance with olive accent, email/Google entry, and no wallet UI.
+- **Research horizon:** a silver demonstration panel pairs discrete time selection with an immediate focus/evidence preview and transfers the selected horizon into the desk question. It is not a return calculator.
+- **FAQ and research story:** inline expanding FAQ rows retain context; manual scenario controls change clearly labelled illustrative questions. The story is not a testimonial.
+- **Desk and evidence:** reporting and chart surfaces use dark charcoal density; the copilot is light. Citations expose provider, freshness and source details. Mobile composer collapse/expand is a real accessible control, not a decorative handle.
+- **Motion:** once-only section reveal uses 700ms and cubic-bezier(0.22,1,0.36,1). Source drift is a pausable 36s loop. Essential content is initially readable. Reduced motion completes all content statically, removes drift and hover transforms, and preserves functional controls.
 
 ## Do's and Don'ts
 
-- **Do** preserve the exact ThreeUI `ConstellationField` `particle-drift` variant in dark mode.
-- **Do** preserve the centered hero and visible black-to-white page transition.
-- **Do** keep the desk dense, quiet, bento-based, and copilot-first on mobile.
-- **Do** expose sources, freshness, provider errors, uncertainty, and human final control.
-- **Do** enable authentication whenever a Privy app ID is available while keeping provider configuration isolated.
-- **Don't** reintroduce the prior blue constellation/sidebar world or its rotated-bar logo.
-- **Don't** remove the chart, stock tiles, model identity, effort control, or attachment affordances.
-- **Don't** fabricate fallback news, market data, testimonials, performance claims, or research evidence.
+- **Do** compose brand illustrations and reporting imagery with sufficient neutral shading for readable text.
+- **Do** preserve the shared cat anatomy and warm study across brand appearances, while keeping factual news images tied to their reporting.
+- **Do** preserve asymmetric heights and different panel roles.
+- **Do** keep timestamps, uncertainty, source links and provider failures visible.
+- **Do** use public exploration before authentication; sign-in supports remembering and personalization.
+- **Don't** return to the monochrome particle hero or generic centered gradient composition.
+- **Don't** invent customer logos, endorsements, live values, coverage statistics or predicted returns.
+- **Don't** add repeated generic desk actions or decorative controls that imply unavailable behavior.
+- **Don't** turn every surface into identical cards, large shadows or glass panels.
+- **Don't** make essential content wait for motion or repeatedly hide content during scrolling.
+
+## Monochrome theme and scale
+
+The latest user direction replaces colored UI surfaces with black, white and tonal greys, preserving composition and cat anatomy. Legacy olive/lime/mint/lavender token names now hold neutral values. Brand and editorial imagery are shown in grayscale without modifying master raster assets. The root uses CSS zoom .8 for the requested 80% interface scale; browser zoom remains user-controlled. Chart direction remains distinguishable through contrasting candle shades and existing labels.
+
+## Cat voice
+
+Fisk is quietly curious, observant and mildly deadpan: “A nose for news. An eye for evidence.” Use a few natural cat references in marketing and assistant first-use/loading copy, such as paper trails, chasing tails and laser pointers. Keep navigation, sources, financial findings, uncertainty and error recovery literal. Avoid pun-heavy controls, profit jokes, or changing cited editorial copy.
+
+Introduce the cat explicitly as Fisk, the user’s AI research assistant. Fisk can speak in first person in assistant-owned empty and loading states; published research and publisher content keep their own factual voice. Lead the hero with “Meet Fisk. Your research cat.” and retain “A nose for news. An eye for evidence.” as the supporting brand line.

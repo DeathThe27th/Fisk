@@ -1,0 +1,1017 @@
+{
+  "routes": [
+    {
+      "route": "/",
+      "status": 200,
+      "controls": [
+        {
+          "tag": "a",
+          "label": "Research",
+          "destination": "#research",
+          "expanded": null,
+          "disabled": false,
+          "section": "Main navigation"
+        },
+        {
+          "tag": "a",
+          "label": "Market Pulse",
+          "destination": "#news",
+          "expanded": null,
+          "disabled": false,
+          "section": "Main navigation"
+        },
+        {
+          "tag": "a",
+          "label": "Methodology",
+          "destination": "/methodology",
+          "expanded": null,
+          "disabled": false,
+          "section": "Main navigation"
+        },
+        {
+          "tag": "a",
+          "label": "Fisk home",
+          "destination": "/",
+          "expanded": null,
+          "disabled": false,
+          "section": "ed-nav"
+        },
+        {
+          "tag": "button",
+          "label": "Sign in",
+          "destination": null,
+          "expanded": null,
+          "disabled": false,
+          "section": "ed-nav"
+        },
+        {
+          "tag": "a",
+          "label": "Open Fisk",
+          "destination": "/desk",
+          "expanded": null,
+          "disabled": false,
+          "section": "ed-nav"
+        },
+        {
+          "tag": "button",
+          "label": "Ask Fisk",
+          "destination": null,
+          "expanded": null,
+          "disabled": false,
+          "section": null
+        },
+        {
+          "tag": "a",
+          "label": "Yahoo · Sep 17",
+          "destination": "https://finnhub.io/api/news?id=f46086f78b26ca4653489c57be690d52c9c36258ecad07adb12416985611277d",
+          "expanded": null,
+          "disabled": false,
+          "section": null
+        },
+        {
+          "tag": "a",
+          "label": "A clearer view, below",
+          "destination": "#research",
+          "expanded": null,
+          "disabled": false,
+          "section": null
+        },
+        {
+          "tag": "a",
+          "label": "SEC EDGAR",
+          "destination": "https://www.sec.gov/edgar/search/",
+          "expanded": null,
+          "disabled": false,
+          "section": null
+        },
+        {
+          "tag": "a",
+          "label": "Finnhub",
+          "destination": "https://finnhub.io/",
+          "expanded": null,
+          "disabled": false,
+          "section": null
+        },
+        {
+          "tag": "a",
+          "label": "Bitget",
+          "destination": "https://www.bitget.com/",
+          "expanded": null,
+          "disabled": false,
+          "section": null
+        },
+        {
+          "tag": "a",
+          "label": "Bitget Wallet",
+          "destination": "https://web3.bitget.com/",
+          "expanded": null,
+          "disabled": false,
+          "section": null
+        },
+        {
+          "tag": "a",
+          "label": "How Fisk works",
+          "destination": "/methodology",
+          "expanded": null,
+          "disabled": false,
+          "section": "research"
+        },
+        {
+          "tag": "input",
+          "label": "research-horizon",
+          "destination": null,
+          "expanded": null,
+          "disabled": false,
+          "section": null
+        },
+        {
+          "tag": "a",
+          "label": "Research this view",
+          "destination": "/desk?q=Research%20NVDA%20over%20a%201%20week%20horizon.%20Focus%20on%20earnings%20and%20positioning.%20Compare%20supporting%20evidence%2C%20counter-evidence%2C%20and%20invalidation%20conditions.",
+          "expanded": null,
+          "disabled": false,
+          "section": null
+        },
+        {
+          "tag": "button",
+          "label": "Does Fisk place trades?",
+          "destination": null,
+          "expanded": "true",
+          "disabled": false,
+          "section": null
+        },
+        {
+          "tag": "button",
+          "label": "Where does its research come from?",
+          "destination": null,
+          "expanded": "false",
+          "disabled": false,
+          "section": null
+        },
+        {
+          "tag": "button",
+          "label": "How current is the market data?",
+          "destination": null,
+          "expanded": "false",
+          "disabled": false,
+          "section": null
+        },
+        {
+          "tag": "button",
+          "label": "Can I challenge or save a thesis?",
+          "destination": null,
+          "expanded": "false",
+          "disabled": false,
+          "section": null
+        },
+        {
+          "tag": "a",
+          "label": "Explore this scenario",
+          "destination": "/desk?q=How%20could%20weekend%20semiconductor%20news%20affect%20NVDA%2C%20and%20what%20would%20invalidate%20the%20bullish%20thesis%3F",
+          "expanded": null,
+          "disabled": false,
+          "section": null
+        },
+        {
+          "tag": "button",
+          "label": "Previous research scenario",
+          "destination": null,
+          "expanded": null,
+          "disabled": false,
+          "section": null
+        },
+        {
+          "tag": "button",
+          "label": "Next research scenario",
+          "destination": null,
+          "expanded": null,
+          "disabled": false,
+          "section": null
+        },
+        {
+          "tag": "button",
+          "label": "All reporting",
+          "destination": null,
+          "expanded": null,
+          "disabled": false,
+          "section": "news"
+        },
+        {
+          "tag": "button",
+          "label": "Earnings",
+          "destination": null,
+          "expanded": null,
+          "disabled": false,
+          "section": "news"
+        },
+        {
+          "tag": "button",
+          "label": "Company",
+          "destination": null,
+          "expanded": null,
+          "disabled": false,
+          "section": "news"
+        },
+        {
+          "tag": "button",
+          "label": "Read Arm’s CEO Says Demand Is ‘Off the Charts.’ The Problem Is Nobody Can Build Chips Fast Enough",
+          "destination": null,
+          "expanded": null,
+          "disabled": false,
+          "section": "news"
+        },
+        {
+          "tag": "a",
+          "label": "Ask Fisk",
+          "destination": "/desk?q=Analyze%20this%20NVDA%20story%3A%20Arm%E2%80%99s%20CEO%20Says%20Demand%20Is%20%E2%80%98Off%20the%20Charts.%E2%80%99%20The%20Problem%20Is%20Nobody%20Can%20Build%20Chips%20Fast%20Enough.%20Source%3A%20https%3A%2F%2Ffinnhub.io%2Fapi%2Fnews%3Fid%3Df46086f78b26ca4653489c57be690d52c9c36258ecad07adb12416985611277d.%20What%20supports%20or%20challenges%20its%20implications%3F",
+          "expanded": null,
+          "disabled": false,
+          "section": "news"
+        },
+        {
+          "tag": "button",
+          "label": "Read 10-year Treasury yield eases, oil falls to $100: AlphaCheck",
+          "destination": null,
+          "expanded": null,
+          "disabled": false,
+          "section": "news"
+        },
+        {
+          "tag": "a",
+          "label": "Ask Fisk",
+          "destination": "/desk?q=Analyze%20this%20NVDA%20story%3A%2010-year%20Treasury%20yield%20eases%2C%20oil%20falls%20to%20%24100%3A%20AlphaCheck.%20Source%3A%20https%3A%2F%2Ffinnhub.io%2Fapi%2Fnews%3Fid%3Dff0975d5493a70beeb0ece2c57bb502fb6e36f4018b49349a2fb83fc447db0de.%20What%20supports%20or%20challenges%20its%20implications%3F",
+          "expanded": null,
+          "disabled": false,
+          "section": "news"
+        },
+        {
+          "tag": "button",
+          "label": "Read Bill Ackman's Pershing Square Took a New Stake in Netflix in 2026, Years After a Money-Losing Bet on the Stock. Why He Says This Time Is Different.",
+          "destination": null,
+          "expanded": null,
+          "disabled": false,
+          "section": "news"
+        },
+        {
+          "tag": "a",
+          "label": "Ask Fisk",
+          "destination": "/desk?q=Analyze%20this%20NVDA%20story%3A%20Bill%20Ackman's%20Pershing%20Square%20Took%20a%20New%20Stake%20in%20Netflix%20in%202026%2C%20Years%20After%20a%20Money-Losing%20Bet%20on%20the%20Stock.%20Why%20He%20Says%20This%20Time%20Is%20Different..%20Source%3A%20https%3A%2F%2Ffinnhub.io%2Fapi%2Fnews%3Fid%3D6f962f6fc486fc7d539e57dbf56f6a4806be83a6b78af1e35379b3ebd9c281bc.%20What%20supports%20or%20challenges%20its%20implications%3F",
+          "expanded": null,
+          "disabled": false,
+          "section": "news"
+        },
+        {
+          "tag": "a",
+          "label": "Open Fisk",
+          "destination": "/desk",
+          "expanded": null,
+          "disabled": false,
+          "section": null
+        },
+        {
+          "tag": "a",
+          "label": "Fisk home",
+          "destination": "/",
+          "expanded": null,
+          "disabled": false,
+          "section": null
+        },
+        {
+          "tag": "a",
+          "label": "Market Pulse",
+          "destination": "#news",
+          "expanded": null,
+          "disabled": false,
+          "section": "Footer navigation"
+        },
+        {
+          "tag": "a",
+          "label": "Methodology",
+          "destination": "/methodology",
+          "expanded": null,
+          "disabled": false,
+          "section": "Footer navigation"
+        },
+        {
+          "tag": "a",
+          "label": "Back to top",
+          "destination": "#top",
+          "expanded": null,
+          "disabled": false,
+          "section": null
+        }
+      ],
+      "layouts": [
+        {
+          "width": 1440,
+          "overflow": false
+        },
+        {
+          "width": 768,
+          "overflow": false
+        },
+        {
+          "width": 390,
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "route": "/desk",
+      "status": 200,
+      "controls": [
+        {
+          "tag": "a",
+          "label": "Fisk home",
+          "destination": "/",
+          "expanded": null,
+          "disabled": false,
+          "section": "mono-desk-nav"
+        },
+        {
+          "tag": "a",
+          "label": "Home",
+          "destination": "/",
+          "expanded": null,
+          "disabled": false,
+          "section": "mono-desk-nav"
+        },
+        {
+          "tag": "a",
+          "label": "Methodology",
+          "destination": "/methodology",
+          "expanded": null,
+          "disabled": false,
+          "section": "mono-desk-nav"
+        },
+        {
+          "tag": "button",
+          "label": "Sign in",
+          "destination": null,
+          "expanded": null,
+          "disabled": false,
+          "section": "mono-desk-nav"
+        },
+        {
+          "tag": "a",
+          "label": "Yahoo · Open source",
+          "destination": "https://finnhub.io/api/news?id=f46086f78b26ca4653489c57be690d52c9c36258ecad07adb12416985611277d",
+          "expanded": null,
+          "disabled": false,
+          "section": null
+        },
+        {
+          "tag": "a",
+          "label": "Yahoo\n10-year Treasury yield eases, oil falls to $100: AlphaCheck",
+          "destination": "https://finnhub.io/api/news?id=ff0975d5493a70beeb0ece2c57bb502fb6e36f4018b49349a2fb83fc447db0de",
+          "expanded": null,
+          "disabled": false,
+          "section": null
+        },
+        {
+          "tag": "a",
+          "label": "Yahoo\nBill Ackman's Pershing Square Took a New Stake in Netflix in 2026, Years After a Money-Losing Bet on the Stock. Why He Says This Time Is Different.",
+          "destination": "https://finnhub.io/api/news?id=6f962f6fc486fc7d539e57dbf56f6a4806be83a6b78af1e35379b3ebd9c281bc",
+          "expanded": null,
+          "disabled": false,
+          "section": null
+        },
+        {
+          "tag": "a",
+          "label": "Full market view",
+          "destination": "/stock/NVDA",
+          "expanded": null,
+          "disabled": false,
+          "section": null
+        },
+        {
+          "tag": "button",
+          "label": "Candles",
+          "destination": null,
+          "expanded": null,
+          "disabled": false,
+          "section": null
+        },
+        {
+          "tag": "button",
+          "label": "Line",
+          "destination": null,
+          "expanded": null,
+          "disabled": false,
+          "section": null
+        },
+        {
+          "tag": "button",
+          "label": "5M",
+          "destination": null,
+          "expanded": null,
+          "disabled": false,
+          "section": null
+        },
+        {
+          "tag": "button",
+          "label": "15M",
+          "destination": null,
+          "expanded": null,
+          "disabled": false,
+          "section": null
+        },
+        {
+          "tag": "button",
+          "label": "1H",
+          "destination": null,
+          "expanded": null,
+          "disabled": false,
+          "section": null
+        },
+        {
+          "tag": "button",
+          "label": "4H",
+          "destination": null,
+          "expanded": null,
+          "disabled": false,
+          "section": null
+        },
+        {
+          "tag": "button",
+          "label": "1D",
+          "destination": null,
+          "expanded": null,
+          "disabled": false,
+          "section": null
+        },
+        {
+          "tag": "a",
+          "label": "tv-attr-logo",
+          "destination": "https://www.tradingview.com/?utm_medium=lwc-link&utm_campaign=lwc-chart&utm_source=127.0.0.1/desk",
+          "expanded": null,
+          "disabled": false,
+          "section": null
+        },
+        {
+          "tag": "a",
+          "label": "NVIDIA\nNVDA\nOpen research surface",
+          "destination": "/stock/NVDA",
+          "expanded": null,
+          "disabled": false,
+          "section": null
+        },
+        {
+          "tag": "a",
+          "label": "Apple\nAAPL\nOpen research surface",
+          "destination": "/stock/AAPL",
+          "expanded": null,
+          "disabled": false,
+          "section": null
+        },
+        {
+          "tag": "a",
+          "label": "Tesla\nTSLA\nOpen research surface",
+          "destination": "/stock/TSLA",
+          "expanded": null,
+          "disabled": false,
+          "section": null
+        },
+        {
+          "tag": "a",
+          "label": "AMD\nAMD\nOpen research surface",
+          "destination": "/stock/AMD",
+          "expanded": null,
+          "disabled": false,
+          "section": null
+        },
+        {
+          "tag": "button",
+          "label": "What changed for NVDA?",
+          "destination": null,
+          "expanded": null,
+          "disabled": false,
+          "section": null
+        },
+        {
+          "tag": "button",
+          "label": "Pressure-test AMD",
+          "destination": null,
+          "expanded": null,
+          "disabled": false,
+          "section": null
+        },
+        {
+          "tag": "button",
+          "label": "Attach evidence",
+          "destination": null,
+          "expanded": null,
+          "disabled": false,
+          "section": null
+        },
+        {
+          "tag": "button",
+          "label": "Start research",
+          "destination": null,
+          "expanded": null,
+          "disabled": true,
+          "section": null
+        }
+      ],
+      "layouts": [
+        {
+          "width": 1440,
+          "overflow": false
+        },
+        {
+          "width": 768,
+          "overflow": false
+        },
+        {
+          "width": 390,
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "route": "/methodology",
+      "status": 200,
+      "controls": [
+        {
+          "tag": "a",
+          "label": "Fisk home",
+          "destination": "/",
+          "expanded": null,
+          "disabled": false,
+          "section": null
+        },
+        {
+          "tag": "a",
+          "label": "Open Fisk",
+          "destination": "/desk",
+          "expanded": null,
+          "disabled": false,
+          "section": null
+        }
+      ],
+      "layouts": [
+        {
+          "width": 1440,
+          "overflow": false
+        },
+        {
+          "width": 768,
+          "overflow": false
+        },
+        {
+          "width": 390,
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "route": "/stock/NVDA",
+      "status": 200,
+      "controls": [
+        {
+          "tag": "a",
+          "label": "Fisk home",
+          "destination": "/",
+          "expanded": null,
+          "disabled": false,
+          "section": null
+        },
+        {
+          "tag": "a",
+          "label": "Market pulse",
+          "destination": "/#news",
+          "expanded": null,
+          "disabled": false,
+          "section": null
+        },
+        {
+          "tag": "a",
+          "label": "Methodology",
+          "destination": "/methodology",
+          "expanded": null,
+          "disabled": false,
+          "section": null
+        },
+        {
+          "tag": "a",
+          "label": "Ask Fisk",
+          "destination": "/desk?q=Research%20NVDA",
+          "expanded": null,
+          "disabled": false,
+          "section": null
+        },
+        {
+          "tag": "button",
+          "label": "Candles",
+          "destination": null,
+          "expanded": null,
+          "disabled": false,
+          "section": null
+        },
+        {
+          "tag": "button",
+          "label": "Line",
+          "destination": null,
+          "expanded": null,
+          "disabled": false,
+          "section": null
+        },
+        {
+          "tag": "button",
+          "label": "5M",
+          "destination": null,
+          "expanded": null,
+          "disabled": false,
+          "section": null
+        },
+        {
+          "tag": "button",
+          "label": "15M",
+          "destination": null,
+          "expanded": null,
+          "disabled": false,
+          "section": null
+        },
+        {
+          "tag": "button",
+          "label": "1H",
+          "destination": null,
+          "expanded": null,
+          "disabled": false,
+          "section": null
+        },
+        {
+          "tag": "button",
+          "label": "4H",
+          "destination": null,
+          "expanded": null,
+          "disabled": false,
+          "section": null
+        },
+        {
+          "tag": "button",
+          "label": "1D",
+          "destination": null,
+          "expanded": null,
+          "disabled": false,
+          "section": null
+        },
+        {
+          "tag": "a",
+          "label": "tv-attr-logo",
+          "destination": "https://www.tradingview.com/?utm_medium=lwc-link&utm_campaign=lwc-chart&utm_source=127.0.0.1/stock/NVDA",
+          "expanded": null,
+          "disabled": false,
+          "section": null
+        },
+        {
+          "tag": "a",
+          "label": "Open original source",
+          "destination": "https://finnhub.io/api/news?id=f46086f78b26ca4653489c57be690d52c9c36258ecad07adb12416985611277d",
+          "expanded": null,
+          "disabled": false,
+          "section": null
+        },
+        {
+          "tag": "a",
+          "label": "Open original source",
+          "destination": "https://finnhub.io/api/news?id=ff0975d5493a70beeb0ece2c57bb502fb6e36f4018b49349a2fb83fc447db0de",
+          "expanded": null,
+          "disabled": false,
+          "section": null
+        },
+        {
+          "tag": "a",
+          "label": "Open original source",
+          "destination": "https://finnhub.io/api/news?id=6f962f6fc486fc7d539e57dbf56f6a4806be83a6b78af1e35379b3ebd9c281bc",
+          "expanded": null,
+          "disabled": false,
+          "section": null
+        },
+        {
+          "tag": "a",
+          "label": "Open original source",
+          "destination": "https://finnhub.io/api/news?id=7ee30d2e981fec9257bea5fdd23fee43371a3394a875c5f79891f93ddff4ba3c",
+          "expanded": null,
+          "disabled": false,
+          "section": null
+        },
+        {
+          "tag": "a",
+          "label": "Open original source",
+          "destination": "https://finnhub.io/api/news?id=a8cd86d22e3cb1981a7e067c4b47081fcef61313918e7f4b9e72f5b39b764913",
+          "expanded": null,
+          "disabled": false,
+          "section": null
+        },
+        {
+          "tag": "a",
+          "label": "Open original source",
+          "destination": "https://finnhub.io/api/news?id=a0ff60c1bca66d9dcc49d24521bdbaa5ed7e865a1cb4df4318ab4f73a828bbad",
+          "expanded": null,
+          "disabled": false,
+          "section": null
+        },
+        {
+          "tag": "a",
+          "label": "Open original source",
+          "destination": "https://finnhub.io/api/news?id=d7a3d2a0bc6a3829a274a817f409735717d64b0b441073ae374abb49fe80b1cf",
+          "expanded": null,
+          "disabled": false,
+          "section": null
+        },
+        {
+          "tag": "a",
+          "label": "8-K\n2026-09-03",
+          "destination": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000078/nvda-20260902.htm",
+          "expanded": null,
+          "disabled": false,
+          "section": null
+        },
+        {
+          "tag": "a",
+          "label": "10-Q\n2026-08-26",
+          "destination": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000075/nvda-20260726.htm",
+          "expanded": null,
+          "disabled": false,
+          "section": null
+        },
+        {
+          "tag": "a",
+          "label": "8-K\n2026-08-26",
+          "destination": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000073/nvda-20260826.htm",
+          "expanded": null,
+          "disabled": false,
+          "section": null
+        },
+        {
+          "tag": "a",
+          "label": "8-K\n2026-08-17",
+          "destination": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000069/nvda-20260817.htm",
+          "expanded": null,
+          "disabled": false,
+          "section": null
+        },
+        {
+          "tag": "a",
+          "label": "8-K\n2026-07-02",
+          "destination": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000060/nvda-20260628.htm",
+          "expanded": null,
+          "disabled": false,
+          "section": null
+        }
+      ],
+      "layouts": [
+        {
+          "width": 1440,
+          "overflow": false
+        },
+        {
+          "width": 768,
+          "overflow": false
+        },
+        {
+          "width": 390,
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "route": "/login",
+      "status": 200,
+      "controls": [
+        {
+          "tag": "a",
+          "label": "Fisk home",
+          "destination": "/",
+          "expanded": null,
+          "disabled": false,
+          "section": null
+        },
+        {
+          "tag": "a",
+          "label": "Back to market pulse",
+          "destination": "/#news",
+          "expanded": null,
+          "disabled": false,
+          "section": null
+        },
+        {
+          "tag": "button",
+          "label": "Continue with email or Google",
+          "destination": null,
+          "expanded": null,
+          "disabled": false,
+          "section": null
+        }
+      ],
+      "layouts": [
+        {
+          "width": 1440,
+          "overflow": false
+        },
+        {
+          "width": 768,
+          "overflow": false
+        },
+        {
+          "width": 390,
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "route": "/watchlist",
+      "status": 200,
+      "controls": [
+        {
+          "tag": "a",
+          "label": "Fisk home",
+          "destination": "/",
+          "expanded": null,
+          "disabled": false,
+          "section": null
+        },
+        {
+          "tag": "a",
+          "label": "Research desk",
+          "destination": "/desk",
+          "expanded": null,
+          "disabled": false,
+          "section": null
+        },
+        {
+          "tag": "a",
+          "label": "Markets",
+          "destination": "/stock/NVDA",
+          "expanded": null,
+          "disabled": false,
+          "section": null
+        },
+        {
+          "tag": "button",
+          "label": "Continue with email or Google",
+          "destination": null,
+          "expanded": null,
+          "disabled": false,
+          "section": null
+        }
+      ],
+      "layouts": [
+        {
+          "width": 1440,
+          "overflow": false
+        },
+        {
+          "width": 768,
+          "overflow": false
+        },
+        {
+          "width": 390,
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "route": "/journal",
+      "status": 200,
+      "controls": [
+        {
+          "tag": "a",
+          "label": "Fisk home",
+          "destination": "/",
+          "expanded": null,
+          "disabled": false,
+          "section": null
+        },
+        {
+          "tag": "a",
+          "label": "Research desk",
+          "destination": "/desk",
+          "expanded": null,
+          "disabled": false,
+          "section": null
+        },
+        {
+          "tag": "a",
+          "label": "Markets",
+          "destination": "/stock/NVDA",
+          "expanded": null,
+          "disabled": false,
+          "section": null
+        },
+        {
+          "tag": "button",
+          "label": "Continue with email or Google",
+          "destination": null,
+          "expanded": null,
+          "disabled": false,
+          "section": null
+        }
+      ],
+      "layouts": [
+        {
+          "width": 1440,
+          "overflow": false
+        },
+        {
+          "width": 768,
+          "overflow": false
+        },
+        {
+          "width": 390,
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "route": "/settings",
+      "status": 200,
+      "controls": [
+        {
+          "tag": "a",
+          "label": "Fisk home",
+          "destination": "/",
+          "expanded": null,
+          "disabled": false,
+          "section": null
+        },
+        {
+          "tag": "a",
+          "label": "Research desk",
+          "destination": "/desk",
+          "expanded": null,
+          "disabled": false,
+          "section": null
+        },
+        {
+          "tag": "a",
+          "label": "Markets",
+          "destination": "/stock/NVDA",
+          "expanded": null,
+          "disabled": false,
+          "section": null
+        },
+        {
+          "tag": "button",
+          "label": "Continue with email or Google",
+          "destination": null,
+          "expanded": null,
+          "disabled": false,
+          "section": null
+        }
+      ],
+      "layouts": [
+        {
+          "width": 1440,
+          "overflow": false
+        },
+        {
+          "width": 768,
+          "overflow": false
+        },
+        {
+          "width": 390,
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "route": "/desk/audit-session",
+      "status": 200,
+      "controls": [
+        {
+          "tag": "a",
+          "label": "Fisk home",
+          "destination": "/",
+          "expanded": null,
+          "disabled": false,
+          "section": null
+        },
+        {
+          "tag": "a",
+          "label": "Back to desk",
+          "destination": "/desk",
+          "expanded": null,
+          "disabled": false,
+          "section": null
+        }
+      ],
+      "layouts": [
+        {
+          "width": 1440,
+          "overflow": false
+        },
+        {
+          "width": 768,
+          "overflow": false
+        },
+        {
+          "width": 390,
+          "overflow": false
+        }
+      ]
+    }
+  ],
+  "browserErrors": []
+}
