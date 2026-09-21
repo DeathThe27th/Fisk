@@ -9,7 +9,9 @@
       "workspaceChart": "line only",
       "chatPattern": "floating control to desktop rail; full-height mobile",
       "mascotDetail": "silver brow notch and F-shaped tail",
-      "colors": {"paper":"#f3f2ee","ink":"#111111","cat":"#050505","muted":"#686863","line":"#d8d7d2","positive":"#16794b","negative":"#b33a3a"}
+      "colors": {"paper":"#F8FBF8","forest":"#0B3D2E","brand":"#18A66F","mint":"#DDF7E9","lime":"#B9F227","ink":"#102019","muted":"#66736C","line":"#DCE7E0","positive":"#11875D","negative":"#E45D68","warning":"#D89B32"},
+      "stockSelection": "deep-linkable overlay preserving Desk state",
+      "cardData": "provider-backed 24h sparkline or labelled unavailable state"
     },
     "colorMeta": {
       "olive": {

@@ -48,7 +48,9 @@ Fisk is an original solid-black cat with tall ears, large white eyes, a silver b
 
 The selected-stock workspace is calmer and source-led. It uses one line chart, explicit range controls and freshness, followed by reporting and SEC filings. Chat begins as a compact floating control; on desktop it becomes a persistent right rail, and on mobile a full-height conversation surface. Model names, effort controls, chart-type switching, and decorative bento structure are prohibited.
 
-Desk tokens: warm paper `#f3f2ee`, ink `#111111`, hero/cat `#050505`, muted `#686863`, line `#d8d7d2`, positive `#16794b`, negative `#b33a3a`. Manrope remains the interface voice and JetBrains Mono is reserved for tickers, freshness, and compact market metadata. Desk cards use 15–16px corners; pills are reserved for filters and actions.
+Desk tokens: paper `#F8FBF8`, forest `#0B3D2E`, Fisk green `#18A66F`, mint `#DDF7E9`, rare lime `#B9F227`, ink `#102019`, muted `#66736C`, line `#DCE7E0`, positive `#11875D`, negative `#E45D68`, and warning `#D89B32`. Manrope remains the interface voice and JetBrains Mono is reserved for tickers, freshness, and compact market metadata. Desk cards use 15–16px corners; pills are reserved for filters and actions.
+
+Stock selection is a deep-linkable overlay over the preserved discovery Desk. Tall listing cards use provider-backed 24-hour sparklines when available and explicitly label unavailable data. The landing hero uses the same black Fisk mascot as the product, with a lime brow notch and restrained contextual eye, ear, and tail reactions.
 
 ## Overview
 
