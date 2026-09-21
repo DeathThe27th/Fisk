@@ -56,7 +56,6 @@ html{scrollbar-color:#777777 #f6f6f6}::selection{background:#ececec;color:#23232
 .ed-hero>.shader-animation-root{position:absolute;inset:0;z-index:0;width:100%;height:100%;background:#000;opacity:.9;mix-blend-mode:screen;pointer-events:none}
 .ed-hero>.shader-animation-root canvas{display:block;width:100%;height:100%}
 .ed-hero-bottom,.ed-hero-foot{position:relative;z-index:2}
-.ed-hero-signal{width:min(345px,31vw);flex-shrink:0;margin:0 0 4px;padding:20px 20px 18px;border:1px solid #ffffff38;border-radius:16px;background:#0b1b46d9;color:#ffffff}.ed-hero-signal>header{display:flex;align-items:center;justify-content:space-between;gap:12px;color:#b9c8ec;font:500 9px/1 var(--mono);letter-spacing:.04em}.ed-signal-status{display:flex;align-items:center;gap:6px;color:#d9ff58}.ed-signal-status i{width:6px;height:6px;border-radius:50%;background:#d9ff58}.ed-hero-signal>p{margin:34px 0 8px;color:#b9c8ec;font:500 9px/1 var(--mono);text-transform:uppercase;letter-spacing:.04em}.ed-hero-signal>strong{display:block;font-size:21px;line-height:1.15;letter-spacing:-.03em;font-weight:500}.ed-signal-trace{display:flex;align-items:center;gap:8px;margin:27px 0 24px;color:#ffffff;font:500 10px/1 var(--mono)}.ed-signal-trace i{height:1px;flex:1;background:#ffffff55}.ed-hero-signal>footer{display:flex;align-items:center;justify-content:space-between;padding-top:13px;border-top:1px solid #ffffff24;color:#b9c8ec;font-size:10px}.ed-hero-signal>footer svg{color:#d9ff58}
 
 /* Small rounded navs keep the interface buoyant without adding another control. */
 .ed-nav{border-radius:999px}
@@ -65,7 +64,8 @@ html{scrollbar-color:#777777 #f6f6f6}::selection{background:#ececec;color:#23232
 .fisk-corner-cameo>div{position:absolute;right:-8px;bottom:-16px;width:158px;height:130px;overflow:hidden}
 .fisk-corner-cameo .fisk-hero-cat{width:100%;height:100%;display:flex;align-items:flex-end;justify-content:center}
 .fisk-corner-cameo .fisk-hero-cat svg{width:100%;height:100%;transform:translateY(22px);filter:drop-shadow(0 14px 20px #07163855)}
-.fisk-corner-cameo .hero-cat-eyes circle{animation:cameo-blink 5s ease-in-out both}
+.fisk-corner-cameo .hero-cat-eyes circle{animation:cameo-blink 5s ease-in-out infinite}
+.fisk-corner-cameo.is-interactive{pointer-events:auto}.fisk-corner-cameo.is-interactive>button{position:absolute;inset:0;z-index:3;width:100%;height:100%;border:0;border-radius:16px;background:transparent;cursor:pointer}.fisk-corner-cameo.is-interactive>button:focus-visible{outline:2px solid #80a5ff;outline-offset:4px}
 @keyframes cameo-rise{from{opacity:0;transform:translate(18px,34px) scale(.82)}to{opacity:1;transform:translate(0) scale(1)}}
 @keyframes cameo-blink{0%,32%,36%,58%,100%{transform:scaleY(1)}34%,60%{transform:scaleY(.08)}}
 
@@ -78,5 +78,5 @@ html{scrollbar-color:#777777 #f6f6f6}::selection{background:#ececec;color:#23232
 .fisk-transition-orbit>span:nth-child(1){top:-3px}.fisk-transition-orbit>span:nth-child(2){right:7px;bottom:12px;animation-delay:-.8s}.fisk-transition-orbit>span:nth-child(3){left:7px;bottom:13px;animation-delay:-1.6s}
 .fisk-transition-progress{width:min(250px,64vw);height:3px;margin-top:14px;overflow:hidden;border-radius:999px;background:#ffffff24}.fisk-transition-progress i{display:block;width:100%;height:100%;transform-origin:left;background:#80a5ff;animation:route-progress 5s linear both}
 @keyframes route-fade-in{from{opacity:0}to{opacity:1}}@keyframes orbit-breathe{50%{transform:scale(1.06);box-shadow:0 0 0 22px #80a5ff08,0 0 80px #245bff80}}@keyframes orbit-spin{to{transform:rotate(360deg) translateX(43px) rotate(-360deg)}}@keyframes route-progress{from{transform:scaleX(0)}to{transform:scaleX(1)}}
-@media(max-width:767px){.ed-nav{border-radius:18px}.ed-hero-signal{width:100%;margin-top:44px;padding:17px}.ed-hero-signal>p{margin-top:25px}.ed-signal-trace{margin:22px 0 20px}.fisk-corner-cameo{right:6px;bottom:8px;transform:scale(.82);transform-origin:bottom right}.fisk-route-transition>p{font-size:32px}}
+@media(max-width:767px){.ed-nav{border-radius:18px}.fisk-corner-cameo{right:6px;bottom:8px;transform:scale(.82);transform-origin:bottom right}.fisk-route-transition>p{font-size:32px}}
 @media(prefers-reduced-motion:reduce){.fisk-corner-cameo,.fisk-corner-cameo .hero-cat-eyes circle,.fisk-route-transition,.fisk-transition-orbit,.fisk-transition-orbit>span,.fisk-transition-progress i{animation:none}.fisk-transition-progress i{transform:scaleX(1)}}
