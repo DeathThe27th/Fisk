@@ -8,6 +8,7 @@ import { Brand } from "@/components/brand";
 import { FiskCatMark } from "@/components/fisk-cat";
 import { AuthButton } from "@/components/auth-button";
 import { ShaderAnimation } from "@/components/ui/shader-animation";
+import { FiskCornerCameo } from "@/components/fisk-corner-cameo";
 import type { NewsItem } from "@/lib/types";
 
 const deskLink=(q:string)=>`/desk?q=${encodeURIComponent(q)}`;
@@ -27,6 +28,7 @@ export function PhotographicHero(){
     <div className="ed-hero-bottom ed-shell"><div className="ed-hero-copy"><motion.h1 initial={false} animate={reduced?{}:{opacity:[0.3,1],y:[12,0]}} transition={{duration:0.7,ease}}>Meet Fisk.<br/>Your research cat.</motion.h1><p>Your AI research assistant. Curious about markets,<br className="ed-desktop-break"/> serious about sources. You make the call.</p><div className="ed-hero-cta"><Pill href={deskLink(example)} className="ed-pill-lime">Ask Fisk</Pill><Pill href={deskLink(example)} className="ed-pill-white">Try the demo</Pill></div></div>
     </div>
     <div className="ed-hero-foot ed-shell"><span>A nose for news. An eye for evidence.</span><a href="#research">A clearer view, below <ArrowRight size={13}/></a></div>
+    <FiskCornerCameo />
   </section>;
 }
 export function ProductIntroduction(){return <section className="ed-intro ed-shell" id="research"><Reveal className="ed-intro-copy"><h2>Research beyond<br/>the headline.</h2><div className="ed-action-row"><Pill href="/methodology">How Fisk works</Pill></div><p>Markets make noise.<br/><strong>I follow evidence. Laser pointers can wait.</strong></p><p>Connect the reporting to the original filing, the market response, and the argument on the other side. Build a view you can explain—and change.</p></Reveal><div className="ed-intro-panels"><Reveal className="ed-mint-card" delay={0.1}><div className="ed-mini-feed"><div><span><Newspaper size={13}/> Reporting</span><span>01</span></div><div><span><FileText size={13}/> Primary filings</span><span>02</span></div><div><span><Search size={13}/> Counter-evidence</span><span>03</span></div></div><h3>See what changed.</h3><p>Less chasing tails. More tracing sources.</p></Reveal><Reveal className="ed-olive-card" delay={0.22}><div className="ed-floating-evidence" aria-hidden="true"><div><FileText size={15}/><span>SEC filing<small>Primary evidence</small></span><ArrowUpRight size={14}/></div><div><Newspaper size={15}/><span>The latest headline<small>Context, not conclusions</small></span></div><div><span className="ed-ticker">NVDA</span><span>A question worth asking</span></div></div><div><h3>Connect<br/>the evidence.</h3><p>A clearer picture, with the sources still attached.</p></div></Reveal></div></section>}

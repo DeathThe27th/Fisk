@@ -3,6 +3,7 @@ import { Brand } from "@/components/brand";
 import { AuthButton } from "@/components/auth-button";
 import { DeskWorkspace, type DiscoveryStock } from "@/components/desk-workspace";
 import { getRwaStocks } from "@/lib/providers/bitget";
+import { FiskCornerCameo } from "@/components/fisk-corner-cameo";
 
 export const dynamic="force-dynamic";
 const catalog:DiscoveryStock[]=[
@@ -18,5 +19,5 @@ export default async function Desk({searchParams}:{searchParams:Promise<{q?:stri
   const[rwa]=await Promise.allSettled([getRwaStocks()]);
   const providerStocks=rwa.status==="fulfilled"?rwa.value.value:[];
   const stocks=catalog.map(stock=>{const match=providerStocks.find(item=>item.ticker===stock.ticker);return{...stock,name:match?.name||stock.name,icon:match?.icon,freshness:rwa.status==="fulfilled"?(rwa.value.cached?"Cached · Bitget Wallet":"Bitget Wallet RWA"):"Market data unavailable"}});
-  return <main className="fisk-desk"><header className="fisk-desk-nav"><Brand/><nav aria-label="Desk navigation"><Link className="active" href="/desk">Desk</Link><Link href="/watchlist">Watchlist</Link><Link href="/journal">Journal</Link><Link href="/methodology">Methodology</Link></nav><div className="desk-nav-actions"><AuthButton className="desk-signin"/></div></header><DeskWorkspace initialQuestion={q} initialStock={stock?.toUpperCase()} stocks={stocks}/></main>;
+  return <main className="fisk-desk"><header className="fisk-desk-nav"><Brand/><nav aria-label="Desk navigation"><Link className="active" href="/desk">Desk</Link><Link href="/watchlist">Watchlist</Link><Link href="/journal">Journal</Link><Link href="/methodology">Methodology</Link></nav><div className="desk-nav-actions"><AuthButton className="desk-signin"/></div></header><DeskWorkspace initialQuestion={q} initialStock={stock?.toUpperCase()} stocks={stocks}/><FiskCornerCameo /></main>;
 }

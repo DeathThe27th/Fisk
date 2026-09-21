@@ -8,6 +8,7 @@ import "./editorial.css";
 import "./desk-discovery.css";
 import "@designcodeio/threeui/style.css";
 import { Providers } from "@/components/providers";
+import { FiskRouteTransition } from "@/components/fisk-route-transition";
 
 export const metadata: Metadata = {
   title: "Fisk — AI Market Intelligence",
@@ -20,7 +21,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <body><Providers appId={process.env.NEXT_PUBLIC_PRIVY_APP_ID}>{children}</Providers></body>
+      <body><Providers appId={process.env.NEXT_PUBLIC_PRIVY_APP_ID}>{children}<FiskRouteTransition /></Providers></body>
     </html>
   );
 }
