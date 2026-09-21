@@ -1,24 +1,25 @@
 ---
 name: Fisk
-description: Cat-led editorial market intelligence in monochrome at 80% interface scale.
+description: Cat-led editorial market intelligence in electric blue at 80% interface scale.
 colors:
   paper: "#ffffff"
   ink: "#232323"
-  olive: "#343434"
-  olive-deep: "#181818"
-  lime: "#ececec"
-  lime-soft: "#f7f7f7"
-  mint: "#e5e5e5"
-  lavender: "#e4e4e4"
-  muted: "#676767"
-  line: "rgba(35,35,35,.12)"
-  graphite: "#141414"
-  graphite-2: "#1f1f1f"
-  desk-text: "#f4f4f4"
-  desk-muted: "#bcbcbc"
-  copilot: "#f2f2f2"
-  positive: "#636363"
-  negative: "#686868"
+  blue: "#245BFF"
+  blue-deep: "#0B1B46"
+  blue-soft: "#EAF0FF"
+  lime: "#D9FF58"
+  lime-soft: "#EEF5FF"
+  mint: "#EAF0FF"
+  lavender: "#F3F6FF"
+  muted: "#5D6880"
+  line: "#D7E0F5"
+  graphite: "#0B1B46"
+  graphite-2: "#152D68"
+  desk-text: "#FFFFFF"
+  desk-muted: "#B9C8EC"
+  copilot: "#F7F9FF"
+  positive: "#11875D"
+  negative: "#E45D68"
 typography:
   display: { fontFamily: "Manrope Variable, sans-serif", fontSize: "clamp(56px,5.5vw,80px)", fontWeight: 500, lineHeight: 1.02, letterSpacing: "-0.05em" }
   headline: { fontFamily: "Manrope Variable, sans-serif", fontSize: "clamp(34px,3.8vw,54px)", fontWeight: 500, lineHeight: 1.07, letterSpacing: "-0.04em" }
@@ -29,18 +30,18 @@ typography:
 rounded: { evidence: "10px", widget: "12px", article: "14px", panel: "16px", composer: "18px", footer-mobile: "22px", footer: "28px", pill: "999px" }
 spacing: { micro: "8px", compact: "12px", panel-gap: "18px", grid: "20px", article-gap: "22px", panel: "25px", large-panel: "30px", mobile-section: "75px", section: "130px" }
 components:
-  button-primary: { backgroundColor: "{colors.olive}", textColor: "{colors.paper}", rounded: "{rounded.pill}", height: "44px", padding: "0 23px" }
-  button-lime: { backgroundColor: "{colors.lime}", textColor: "{colors.ink}", rounded: "{rounded.pill}", height: "44px", padding: "0 23px" }
+  button-primary: { backgroundColor: "{colors.blue}", textColor: "{colors.paper}", rounded: "{rounded.pill}", height: "44px", padding: "0 23px" }
+  button-lime: { backgroundColor: "{colors.lime}", textColor: "{colors.blue-deep}", rounded: "{rounded.pill}", height: "44px", padding: "0 23px" }
   button-white: { backgroundColor: "{colors.paper}", textColor: "{colors.ink}", rounded: "{rounded.pill}", height: "44px", padding: "0 23px" }
   button-outline: { backgroundColor: "transparent", textColor: "{colors.ink}", rounded: "{rounded.pill}", height: "44px", padding: "0 23px" }
-  mint-panel: { backgroundColor: "{colors.mint}", textColor: "{colors.ink}", rounded: "{rounded.panel}", padding: "25px" }
+  mint-panel: { backgroundColor: "{colors.blue-soft}", textColor: "{colors.ink}", rounded: "{rounded.panel}", padding: "25px" }
   evidence-chip: { backgroundColor: "#f1f1f1", textColor: "{colors.ink}", rounded: "{rounded.pill}", padding: "8px 10px" }
   hero-input: { backgroundColor: "{colors.paper}", textColor: "{colors.ink}", rounded: "{rounded.pill}", padding: "7px 7px 7px 18px" }
 ---
 
 # Design System: Fisk
 
-## 2026 Desk identity: The Black Cat Market Directory
+## 2026 Desk identity: The Electric Blue Cat Market Directory
 
 The Desk is no longer a bento dashboard. Its default state is a wide, warm-white stock directory: compact navigation, a black market wire, a single editorial hero, searchable sector filters, and a dense four-column field of tall stock cards. No chart exists until a user chooses or names an asset.
 
@@ -48,15 +49,15 @@ Fisk is an original solid-black cat with tall ears, large white eyes, a silver b
 
 The selected-stock workspace is calmer and source-led. It uses one line chart, explicit range controls and freshness, followed by reporting and SEC filings. Chat begins as a compact floating control; on desktop it becomes a persistent right rail, and on mobile a full-height conversation surface. Model names, effort controls, chart-type switching, and decorative bento structure are prohibited.
 
-Desk tokens: paper `#F8FBF8`, forest `#0B3D2E`, Fisk green `#18A66F`, mint `#DDF7E9`, rare lime `#B9F227`, ink `#102019`, muted `#66736C`, line `#DCE7E0`, positive `#11875D`, negative `#E45D68`, and warning `#D89B32`. Manrope remains the interface voice and JetBrains Mono is reserved for tickers, freshness, and compact market metadata. Desk cards use 15–16px corners; pills are reserved for filters and actions.
+Desk tokens: paper `#F7F9FF`, electric blue `#245BFF`, deep blue `#0B1B46`, blue soft `#EAF0FF`, lime `#D9FF58`, ink `#101A33`, muted `#65718B`, line `#D7E0F5`, positive `#11875D`, negative `#E45D68`, and warning `#D89B32`. Manrope remains the interface voice and JetBrains Mono is reserved for tickers, freshness, and compact market metadata. Desk cards use 15–16px corners; pills are reserved for filters and actions.
 
 Stock selection is a deep-linkable overlay over the preserved discovery Desk. Tall listing cards use provider-backed 24-hour sparklines when available and explicitly label unavailable data. The landing hero uses the same black Fisk mascot as the product, with a lime brow notch and restrained contextual eye, ear, and tail reactions.
 
 ## Overview
 
-**Creative North Star: “The Olive Editorial Research Desk”**
+**Creative North Star: “The Electric Blue Editorial Research Desk”**
 
-Fisk makes evidence approachable through an observant cat identity, open white layouts, tightly set medium-weight type, and small composed research widgets. Charcoal ink and silver highlights connect the public editorial experience to a focused dark charcoal research desk. Distinct grey surfaces distinguish supporting evidence panels rather than becoming status colors.
+Fisk makes evidence approachable through an observant cat identity, open white layouts, tightly set medium-weight type, and small composed research widgets. Electric blue and deep blue connect the public editorial experience to a focused research desk. Pale blue surfaces distinguish supporting evidence panels while lime marks the primary action.
 
 The supplied video and FISK-VIDEO-UI-BRIEF.md establish the editorial foundation. The approved cat identity refinement preserves its layout, palette, spacing, responsive composition and native scrolling. The visual system serves a precise, calm, evidence-led product: questions lead to cited research, uncertainty stays visible, and the user makes the decision. Product capabilities remain governed by PRODUCT.md and functioning integrations; illustrations are not proof of live coverage or performance.
 
