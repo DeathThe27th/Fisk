@@ -12,7 +12,6 @@ import { FiskCornerCameo } from "@/components/fisk-corner-cameo";
 import type { NewsItem } from "@/lib/types";
 
 const deskLink=(q:string)=>`/desk?q=${encodeURIComponent(q)}`;
-const example="How could weekend semiconductor news affect NVDA, and what would invalidate the bullish thesis?";
 const ease=[0.22,1,0.36,1] as const;
 export function Reveal({children,className="",delay=0}:{children:ReactNode;className?:string;delay?:number}){
   const reduced=useReducedMotion();
@@ -25,7 +24,7 @@ export function PhotographicHero(){
     <ShaderAnimation/><div className="ed-hero-shade"/>
     <header className="ed-nav"><Brand inverse/><nav aria-label="Main navigation"><Link className="active" href="#research">Research</Link><Link href="#news">Newsroom</Link><Link href="/methodology">Methodology</Link></nav><div className="ed-nav-actions"><AuthButton className="ed-nav-signin"/><button className="ed-nav-menu-button" aria-label={menu?"Close navigation":"Open navigation"} aria-expanded={menu} onClick={()=>setMenu(!menu)}>{menu?<X size={20}/>:<Menu size={20}/>}</button></div></header>
     {menu&&<nav className="ed-menu" aria-label="Expanded navigation">{[["Research","#research"],["Newsroom","#news"],["Methodology","/methodology"]].map(([label,href])=><Link key={label} href={href} onClick={()=>setMenu(false)}>{label}<ArrowUpRight size={16}/></Link>)}<AuthButton/></nav>}
-    <div className="ed-hero-bottom ed-shell"><div className="ed-hero-copy"><motion.h1 initial={false} animate={reduced?{}:{opacity:[0.3,1],y:[12,0]}} transition={{duration:0.7,ease}}>Meet Fisk.<br/>Your research partner.</motion.h1><p>Your AI research partner. Curious about markets,<br className="ed-desktop-break"/> serious about sources. You make the call.</p><div className="ed-hero-cta"><Pill href={deskLink(example)} className="ed-pill-lime">Ask Fisk</Pill><Pill href={deskLink(example)} className="ed-pill-white">Try the demo</Pill></div></div></div>
+    <div className="ed-hero-bottom ed-shell"><div className="ed-hero-copy"><motion.h1 initial={false} animate={reduced?{}:{opacity:[0.3,1],y:[12,0]}} transition={{duration:0.7,ease}}>Meet Fisk.<br/>Your research partner.</motion.h1><p>Your AI research partner. Curious about markets,<br className="ed-desktop-break"/> serious about sources. You make the call.</p><div className="ed-hero-cta"><Pill href="/desk" className="ed-pill-lime">Enter the desk</Pill><Pill href="/desk" className="ed-pill-white">Browse stocks</Pill></div></div></div>
     <div className="ed-hero-foot ed-shell"><span>A nose for news. An eye for evidence.</span><a href="#research">A clearer view, below <ArrowRight size={13}/></a></div>
     <FiskCornerCameo />
   </section>;
