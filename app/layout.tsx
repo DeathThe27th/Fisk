@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   title: "Fisk — AI Market Intelligence",
   description: "Evidence-led market research for US equities and their tokenized counterparts.",
   metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000"),
-  icons: { icon: "/icon.svg" },
+  icons: { icon: "/icon.svg?v=2" },
   openGraph: { title: "Fisk — See what the market is missing", description: "AI market intelligence with evidence, counterarguments, and human final control.", type: "website" },
 };
 
