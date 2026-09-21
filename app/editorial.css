@@ -51,3 +51,8 @@ html{scrollbar-color:#777777 #f6f6f6}::selection{background:#ececec;color:#23232
 
 /* Final blue pass: no green brand surfaces and no hero wash. */
 .editorial-site{--lime:#80a5ff;--lime-soft:#eef3ff}.ed-hero-shade{display:none}.ed-hero{background:var(--blue-deep)}.ed-nav{padding:10px 16px;top:12px;border-radius:14px}.ed-nav>nav{font-size:10px}.ed-nav>nav a{padding:7px 12px}.ed-nav-actions{gap:8px}.ed-nav-signin{min-height:34px!important;padding:0 15px;border:1px solid #ffffff5c!important;border-radius:999px;background:#ffffff!important;color:var(--blue-deep)!important;font-size:10px!important;font-weight:700}.ed-nav-actions>button.ed-nav-menu-button{min-height:34px;width:34px}.ed-pill-lime{background:var(--blue);color:#fff}.ed-pill-lime:hover{background:#1746d8}.ed-faq h2,.ed-footer-bottom>p{color:#80a5ff}.ed-challenge-mark{background:#80a5ff}.ed-evidence-chip,.ed-mini-feed>div{border-color:#d7e0f5}
+
+/* Full-bleed shader background: the blue base remains visible through the dark shader field. */
+.ed-hero>.shader-animation-root{position:absolute;inset:0;z-index:0;width:100%;height:100%;background:#000;opacity:.9;mix-blend-mode:screen;pointer-events:none}
+.ed-hero>.shader-animation-root canvas{display:block;width:100%;height:100%}
+.ed-hero-bottom,.ed-hero-foot{position:relative;z-index:2}

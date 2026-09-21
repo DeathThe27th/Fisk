@@ -6,8 +6,8 @@ import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { ArrowRight, ArrowUpRight, FileText, Menu, Minus, Newspaper, Plus, Search, X } from "lucide-react";
 import { Brand } from "@/components/brand";
 import { FiskCatMark } from "@/components/fisk-cat";
-import { FiskHeroCat } from "@/components/fisk-hero-cat";
 import { AuthButton } from "@/components/auth-button";
+import { ShaderAnimation } from "@/components/ui/shader-animation";
 import type { NewsItem } from "@/lib/types";
 
 const deskLink=(q:string)=>`/desk?q=${encodeURIComponent(q)}`;
@@ -21,7 +21,7 @@ export function Pill({children,href,className=""}:{children:ReactNode;href:strin
 export function PhotographicHero(){
   const reduced=useReducedMotion();const [menu,setMenu]=useState(false);
   return <section className="ed-hero">
-    <div className="ed-hero-image ed-hero-mascot"><FiskHeroCat/></div><div className="ed-hero-shade"/>
+    <ShaderAnimation/><div className="ed-hero-shade"/>
     <header className="ed-nav"><Brand inverse/><nav aria-label="Main navigation"><Link className="active" href="#research">Research</Link><Link href="#news">Newsroom</Link><Link href="/methodology">Methodology</Link></nav><div className="ed-nav-actions"><AuthButton className="ed-nav-signin"/><button className="ed-nav-menu-button" aria-label={menu?"Close navigation":"Open navigation"} aria-expanded={menu} onClick={()=>setMenu(!menu)}>{menu?<X size={20}/>:<Menu size={20}/>}</button></div></header>
     {menu&&<nav className="ed-menu" aria-label="Expanded navigation">{[["Research","#research"],["Newsroom","#news"],["Methodology","/methodology"]].map(([label,href])=><Link key={label} href={href} onClick={()=>setMenu(false)}>{label}<ArrowUpRight size={16}/></Link>)}<AuthButton/></nav>}
     <div className="ed-hero-bottom ed-shell"><div className="ed-hero-copy"><motion.h1 initial={false} animate={reduced?{}:{opacity:[0.3,1],y:[12,0]}} transition={{duration:0.7,ease}}>Meet Fisk.<br/>Your research cat.</motion.h1><p>Your AI research assistant. Curious about markets,<br className="ed-desktop-break"/> serious about sources. You make the call.</p><div className="ed-hero-cta"><Pill href={deskLink(example)} className="ed-pill-lime">Ask Fisk</Pill><Pill href={deskLink(example)} className="ed-pill-white">Try the demo</Pill></div></div>
