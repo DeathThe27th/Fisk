@@ -2,7 +2,6 @@ import Link from "next/link";
 import { Brand } from "@/components/brand";
 import { AuthButton } from "@/components/auth-button";
 import { DeskWorkspace, type DiscoveryStock } from "@/components/desk-workspace";
-import { getCompanyNews } from "@/lib/providers/finnhub";
 import { getRwaStocks } from "@/lib/providers/bitget";
 
 export const dynamic="force-dynamic";
@@ -15,10 +14,9 @@ const catalog:DiscoveryStock[]=[
 ];
 
 export default async function Desk({searchParams}:{searchParams:Promise<{q?:string;stock?:string}>}){
-  const{q="",stock}=await searchParams;const now=new Date();
-  const[feed,rwa]=await Promise.allSettled([getCompanyNews("NVDA",new Date(now.getTime()-10*864e5).toISOString().slice(0,10),now.toISOString().slice(0,10)),getRwaStocks()]);
+  const{q="",stock}=await searchParams;
+  const[rwa]=await Promise.allSettled([getRwaStocks()]);
   const providerStocks=rwa.status==="fulfilled"?rwa.value.value:[];
   const stocks=catalog.map(stock=>{const match=providerStocks.find(item=>item.ticker===stock.ticker);return{...stock,name:match?.name||stock.name,icon:match?.icon,freshness:rwa.status==="fulfilled"?(rwa.value.cached?"Cached · Bitget Wallet":"Bitget Wallet RWA"):"Market data unavailable"}});
-  const news=feed.status==="fulfilled"?feed.value:{items:[],error:"Market news is reconnecting."};
-  return <main className="fisk-desk"><header className="fisk-desk-nav"><Brand/><nav aria-label="Desk navigation"><Link className="active" href="/desk">Desk</Link><Link href="/watchlist">Watchlist</Link><Link href="/journal">Journal</Link><Link href="/methodology">Methodology</Link></nav><div className="desk-nav-actions"><AuthButton/><Link className="desk-nav-cta" href="/#research">How Fisk works</Link></div></header><DeskWorkspace initialQuestion={q} initialStock={stock?.toUpperCase()} news={news.items} newsError={news.error} stocks={stocks}/></main>;
+  return <main className="fisk-desk"><header className="fisk-desk-nav"><Brand/><nav aria-label="Desk navigation"><Link className="active" href="/desk">Desk</Link><Link href="/watchlist">Watchlist</Link><Link href="/journal">Journal</Link><Link href="/methodology">Methodology</Link></nav><div className="desk-nav-actions"><AuthButton className="desk-signin"/></div></header><DeskWorkspace initialQuestion={q} initialStock={stock?.toUpperCase()} stocks={stocks}/></main>;
 }
