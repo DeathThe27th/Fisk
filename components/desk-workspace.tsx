@@ -9,6 +9,7 @@ import { FiskCornerCameo } from "@/components/fisk-corner-cameo";
 import { PromptInput } from "@/components/ui/ai-chat-input";
 import HoverRevealCards, { type CardItem } from "@/components/ui/cards";
 import { StockSparkline } from "@/components/stock-sparkline";
+import { StockArtwork } from "@/components/stock-artwork";
 import { StockOverlay } from "@/components/stock-overlay";
 import type { Evidence, ResearchResult } from "@/lib/types";
 
@@ -105,7 +106,7 @@ export function DeskWorkspace({ initialQuestion, initialStock, stocks }: { initi
             <button type="button" onClick={() => searchRef.current?.focus()}>Explore stocks <Search size={15} /></button>
           </div>
           <div className="desk-hero-field" aria-hidden="true">
-            {stocks.slice(0, 3).map((stock, index) => <div className={`desk-hero-stock is-${index + 1}`} key={stock.ticker}>{stock.icon ? <img src={stock.icon} alt="" /> : <span>{stock.ticker.slice(0, 2)}</span>}<b>{stock.ticker}</b></div>)}
+            {stocks.slice(0, 3).map((stock, index) => <div className={`desk-hero-stock is-${index + 1}`} key={stock.ticker}><StockArtwork ticker={stock.ticker} name={stock.name} icon={stock.icon} /><b>{stock.ticker}</b></div>)}
             <i /><i /><i />
           </div>
         </section>
@@ -123,7 +124,7 @@ export function DeskWorkspace({ initialQuestion, initialStock, stocks }: { initi
               <button className="stock-card-link" onClick={() => openStock(stock.ticker)} aria-label={`Open ${stock.name} research`}>
                 <div className="stock-card-visual">
                   <div className="stock-card-atmosphere" aria-hidden="true" />
-                  {stock.icon ? <img className="stock-card-image" src={stock.icon} alt="" /> : <div className="stock-card-image stock-card-image-fallback" aria-hidden="true"><span>{stock.ticker}</span></div>}
+                  <StockArtwork ticker={stock.ticker} name={stock.name} icon={stock.icon} />
                   <div className="stock-card-overlay" aria-hidden="true" />
                   <div className="stock-card-topline"><span className="stock-card-sector">{stock.sector}</span><span className="stock-price-pill"><small>{stock.price ? "PRICE" : "PRICE PENDING"}</small><strong>{stock.price ?? "Loading…"}</strong></span></div>
                   <div className="stock-card-identity"><b>{stock.ticker}</b><span>{stock.name}</span></div>
