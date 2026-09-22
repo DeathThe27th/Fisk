@@ -1,5 +1,4 @@
 import "server-only";
-import { PDFParse } from "pdf-parse";
 
 export type ResearchAttachment = { name: string; type: string; size: number; text: string };
 
@@ -15,6 +14,7 @@ export async function extractResearchAttachment(file: File): Promise<ResearchAtt
   const buffer = Buffer.from(await file.arrayBuffer());
   let text = "";
   if (file.type === "application/pdf" || /\.pdf$/i.test(file.name)) {
+    const { PDFParse } = await import("pdf-parse");
     const parser = new PDFParse({ data: buffer });
     try {
       text = (await parser.getText()).text;
