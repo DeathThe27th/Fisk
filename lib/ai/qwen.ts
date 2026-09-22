@@ -6,6 +6,34 @@ import { ResearchResultSchema, type Evidence, type ResearchResult } from "@/lib/
 let singleton:OpenAI|undefined;
 function qwen(){if(!singleton){const env=serverEnv();singleton=new OpenAI({apiKey:requireEnv("BITGET_QWEN_API_KEY"),baseURL:env.QWEN_BASE_URL,timeout:45_000,maxRetries:0})}return singleton}
 
+const validModules=["chart","news","filings","signals","comparison","stress-test"] as const;
+const positiveDirections=new Set(["positive","bullish","bull","up","supportive","tailwind"]);
+const negativeDirections=new Set(["negative","bearish","bear","down","adverse","headwind"]);
+
+function stringList(value:unknown){
+  if(Array.isArray(value))return value.filter((item):item is string=>typeof item==="string"&&item.trim().length>0).map(item=>item.trim());
+  return typeof value==="string"&&value.trim().length>0?[value.trim()]:[];
+}
+
+function objectList(value:unknown){
+  return Array.isArray(value)?value.filter((item):item is Record<string,unknown>=>Boolean(item)&&typeof item==="object"):[];
+}
+
+function normalizeDirection(value:unknown){
+  const direction=typeof value==="string"?value.toLowerCase().trim():"";
+  if(positiveDirections.has(direction))return "positive" as const;
+  if(negativeDirections.has(direction))return "negative" as const;
+  return "mixed" as const;
+}
+
+function normalizeResearchPayload(raw:Record<string,unknown>){
+  const keyFindings=objectList(raw.keyFindings).map(item=>({claim:typeof item.claim==="string"?item.claim.trim():"",evidenceIds:stringList(item.evidenceIds)})).filter(item=>item.claim);
+  const catalysts=objectList(raw.catalysts).map(item=>({event:typeof item.event==="string"?item.event.trim():"",date:typeof item.date==="string"?item.date:undefined,direction:normalizeDirection(item.direction)})).filter(item=>item.event);
+  const stressTests=objectList(raw.stressTests).map(item=>({scenario:typeof item.scenario==="string"?item.scenario.trim():"",implication:typeof item.implication==="string"?item.implication.trim():"",evidenceIds:stringList(item.evidenceIds)})).filter(item=>item.scenario&&item.implication);
+  const modules=stringList(raw.modules).filter((module):module is typeof validModules[number]=>validModules.includes(module as typeof validModules[number]));
+  return {...raw,keyFindings,catalysts,bullCase:stringList(raw.bullCase),bearCase:stringList(raw.bearCase),stressTests,invalidationConditions:stringList(raw.invalidationConditions),unknowns:stringList(raw.unknowns),modules};
+}
+
 export async function synthesizeResearch(query:string,evidence:Evidence[],activity:ResearchResult["activity"]){
   const env=serverEnv();
   const instructions="You are Fisk, an evidence-led market research assistant. Use only supplied evidence. Separate facts from inference. Include supporting and opposing evidence, unknowns, stress tests, and concrete invalidation conditions. Confidence labels evidence quality, never profit probability. Never imply trade execution or guaranteed returns.";
@@ -26,5 +54,5 @@ export async function synthesizeResearch(query:string,evidence:Evidence[],activi
   const content=response.choices[0]?.message.content;if(!content)throw new Error("Qwen returned no synthesis.");
   const raw=content.trim().replace(/^```(?:json)?\s*/i,"").replace(/\s*```$/,"");
   const parsed=JSON.parse(raw) as Record<string,unknown>;
-  return ResearchResultSchema.parse({...parsed,evidence,activity});
+  return ResearchResultSchema.parse({...normalizeResearchPayload(parsed),evidence,activity});
 }
