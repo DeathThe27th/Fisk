@@ -16,8 +16,51 @@ function client() {
   return singleton;
 }
 
-const StockSchema = z.object({ ticker:z.string(), name:z.string().default(""), icon:z.string().optional(), status:z.string().default("online"), contracts:z.array(z.object({chain:z.string(),contract:z.string(),symbol:z.string().default(""),data_source:z.string().default(""),status:z.string().default("online")})).default([]) });
+const RwaAssetSchema = z.object({chain:z.string().optional(),contract:z.string().optional(),symbol:z.string().optional(),data_source:z.string().optional(),status:z.string().optional(),latest_price:z.string().optional(),price_24h_change:z.string().optional(),price_24h_change_ratio:z.string().optional(),market_status:z.string().optional(),market_status_title:z.string().optional()});
+const StockSchema = z.object({ ticker:z.string(), name:z.string().default(""), icon:z.string().optional(), status:z.string().default("online"), contracts:z.array(RwaAssetSchema).default([]) });
 export type RwaStock = z.infer<typeof StockSchema>;
+export type RwaAsset = z.infer<typeof RwaAssetSchema>;
+const StockInfoSchema = z.object({ ticker:z.string(), name:z.string().default(""), icon:z.string().optional(), latest_price:z.string().optional(), price_24h_change:z.string().optional(), price_24h_change_ratio:z.string().optional(), chain_assets:z.array(RwaAssetSchema).default([]) });
+export type RwaStockInfo = z.infer<typeof StockInfoSchema>;
+const StockQuoteSchema = z.object({ ticker:z.string(), latest_price:z.string().optional(), price_24h_change:z.string().optional(), price_24h_change_ratio:z.string().optional() });
+export type RwaQuote = z.infer<typeof StockQuoteSchema>;
+
+export type SelectedRwaInstrument = {
+  chain: string;
+  contract: string;
+  symbol: string;
+  dataSource: string;
+  productType: "rtoken" | "ondo-token" | "reality";
+  latestPrice?: string;
+  absoluteChange?: string;
+  percentageChange?: string;
+  marketStatus?: string;
+  marketStatusTitle?: string;
+};
+
+function productType(dataSource: string): SelectedRwaInstrument["productType"] {
+  if (dataSource === "ondo") return "ondo-token";
+  if (dataSource === "reality") return "reality";
+  return "rtoken";
+}
+
+export function selectRwaInstrument(source: { contracts?: RwaAsset[]; chain_assets?: RwaAsset[] }): SelectedRwaInstrument | null {
+  const candidates = [...(source.chain_assets ?? []), ...(source.contracts ?? [])].filter((asset) => asset.chain && asset.contract);
+  const selected = candidates.find((asset) => asset.status !== "offline") ?? candidates[0];
+  if (!selected?.chain || !selected.contract) return null;
+  return {
+    chain: selected.chain,
+    contract: selected.contract,
+    symbol: selected.symbol ?? selected.contract,
+    dataSource: selected.data_source ?? "rwa",
+    productType: productType(selected.data_source ?? "xstocks"),
+    latestPrice: selected.latest_price,
+    absoluteChange: selected.price_24h_change,
+    percentageChange: selected.price_24h_change_ratio,
+    marketStatus: selected.market_status,
+    marketStatusTitle: selected.market_status_title,
+  };
+}
 
 export async function getRwaStocks() {
   return cached("bitget:rwa:list", 5*60_000, async()=>{
@@ -32,7 +75,20 @@ export async function getRwaStock(ticker:string) {
   return cached(`bitget:rwa:stock:${symbol}`,60_000,async()=>{
     const response=await client().rwa.stockInfo({ticker:symbol});
     if(response.status!==0 || !response.data) throw new Error("Bitget RWA stock detail failed");
-    return response.data;
+    return StockInfoSchema.parse(response.data);
+  });
+}
+
+export async function getRwaQuotes(tickers:string[]) {
+  const symbols=[...new Set(tickers.map(ticker=>ticker.toUpperCase()))].sort();
+  if(!symbols.length)return {value:[],cached:false,storedAt:Date.now()};
+  return cached(`bitget:rwa:quotes:${symbols.join(",")}`,60_000,async()=>{
+    const results=await Promise.allSettled(symbols.map(async ticker=>{
+      const response=await client().rwa.stockInfo({ticker});
+      if(response.status!==0 || !response.data)throw new Error(`Bitget RWA quote failed for ${ticker}`);
+      return StockQuoteSchema.parse({ticker:response.data.ticker??ticker,latest_price:response.data.latest_price,price_24h_change:response.data.price_24h_change,price_24h_change_ratio:response.data.price_24h_change_ratio});
+    }));
+    return results.flatMap(result=>result.status==="fulfilled"?[result.value]:[]);
   });
 }
 
@@ -40,12 +96,12 @@ export async function getRtokenMapping(ticker:string){const stocks=await getRwaS
 export async function getRtokenTransactions(chain:string,contract:string,side?:"buy"|"sell",page=1,size=20){const response=await client().rwa.transactionList({chain,contract,side,page,size:Math.min(size,100)});if(response.status!==0)throw new Error("Bitget RWA transaction list failed");return response.data}
 
 export async function getRwaCandles(ticker:string,period:"5m"|"15m"|"1h"|"4h"|"1d"="1h",size=120,asset?:{chain:string;contract:string}) {
-  const symbol=ticker.toUpperCase(); const key=`bitget:rwa:kline:${symbol}:${period}:${asset?.chain??"underlying"}`;
+  const symbol=ticker.toUpperCase(); const key=`bitget:rwa:kline:${symbol}:${period}:${asset?.chain??"underlying"}:${asset?.contract??symbol}`;
   try {
     const result=await cached(key,45_000,async()=>{
       const response=await client().rwa.kline({chain:asset?.chain??"rwa",contract:asset?.contract??symbol,period,size:Math.min(size,300)});
       if(response.status!==0) throw new Error("Bitget RWA K-line failed");
-      const candles=(response.data?.list??[]).map(item=>CandleSchema.parse({time:item.ts,open:item.open,high:item.high,low:item.low,close:item.close,volume:item.volume})).sort((a,b)=>a.time-b.time);
+      const candles=(response.data?.list??[]).map(item=>CandleSchema.parse({time:item.ts && item.ts > 10_000_000_000 ? Math.floor(item.ts / 1000) : item.ts,open:item.open,high:item.high,low:item.low,close:item.close,volume:item.volume})).sort((a,b)=>a.time-b.time);
       if(!candles.length) throw new Error("Bitget returned no candles");
       return candles;
     });

@@ -6,6 +6,7 @@ import "./extended.css";
 import "./redesign.css";
 import "./editorial.css";
 import "./desk-discovery.css";
+import "./stock-research.css";
 import "@designcodeio/threeui/style.css";
 import { Providers } from "@/components/providers";
 import { FiskRouteTransition } from "@/components/fisk-route-transition";

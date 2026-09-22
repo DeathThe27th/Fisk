@@ -1,11 +1,30 @@
-import Link from "next/link";
-import {ArrowLeft,Bookmark,ExternalLink}from "lucide-react";
-import {Brand}from "@/components/brand";
-import {MarketChart}from "@/components/market-chart";
-import {StockChat}from "@/components/stock-chat";
-import {getRwaCandles,getRwaStock}from "@/lib/providers/bitget";
-import {getCompanyNews}from "@/lib/providers/finnhub";
-import {getRecentFilings}from "@/lib/providers/sec";
+import { publicEnv } from "@/lib/env";
+import { getStockDefinition } from "@/lib/stocks";
+import { getRwaCandles, getRwaStock, selectRwaInstrument } from "@/lib/providers/bitget";
+import { getCompanyNews } from "@/lib/providers/finnhub";
+import { getRecentFilings } from "@/lib/providers/sec";
+import { StockResearchWorkspace, type StockWorkspaceInstrument } from "@/components/stock-research-workspace";
 
-export const dynamic="force-dynamic";
-export default async function StockPage({params,searchParams}:{params:Promise<{ticker:string}>;searchParams:Promise<{q?:string}>}){const[{ticker:raw},{q=""}]=await Promise.all([params,searchParams]);const ticker=raw.toUpperCase();const now=new Date();const[stock,chart,news,filings]=await Promise.allSettled([getRwaStock(ticker),getRwaCandles(ticker,"1h",120),getCompanyNews(ticker,new Date(now.getTime()-14*864e5).toISOString().slice(0,10),now.toISOString().slice(0,10)),getRecentFilings(ticker)]);const chartData=chart.status==="fulfilled"?chart.value:{candles:[],freshness:"delayed" as const,updatedAt:new Date().toISOString(),source:"Unavailable",error:"Market data unavailable"};const info=stock.status==="fulfilled"?stock.value.value:null;const price=info?.latest_price?`$${info.latest_price}`:"Price pending";return <main className="stock-workspace"><header className="stock-workspace-nav"><Brand/><nav><Link href="/desk"><ArrowLeft size={15}/>Back to Desk</Link><Link href="/watchlist">Watchlist</Link><Link href="/history">Research</Link></nav></header><section className="stock-workspace-head"><div className="stock-company-mark">{ticker.slice(0,2)}</div><div><span>{String(info?.name??"US equity research")}</span><h1>{ticker}</h1></div><div className="stock-live-price"><strong>{price}</strong><span>{info?.price_24h_change_ratio??chartData.freshness}</span></div><button aria-label={`Save ${ticker}`}><Bookmark size={18}/>Save</button></section><div className="stock-workspace-body"><section className="stock-chart-section"><MarketChart ticker={ticker} initial={chartData}/></section><section className="stock-research-grid"><div><header><h2>Latest reporting</h2><span>{news.status==="fulfilled"?`${news.value.items.length} sources`:"Unavailable"}</span></header>{news.status==="fulfilled"&&news.value.items.slice(0,7).map(item=><article className="stock-news-row" key={item.id}><div><span>{item.source} · {item.freshness}</span><h3>{item.headline}</h3><p>{item.impact}</p></div><a href={item.sourceUrl} target="_blank" rel="noreferrer" aria-label="Open original source"><ExternalLink size={16}/></a></article>)}</div><aside><header><h2>Official filings</h2><span>SEC EDGAR</span></header>{filings.status==="fulfilled"&&filings.value.items.slice(0,6).map(item=><a className="stock-filing-row" href={item.sourceUrl} target="_blank" rel="noreferrer" key={item.id}><b>{item.form}</b><span>{item.filedAt.slice(0,10)}</span><ExternalLink size={13}/></a>)}</aside></section></div><StockChat ticker={ticker} initialQuestion={q}/></main>}
+export const dynamic = "force-dynamic";
+
+export default async function StockPage({ params, searchParams }: { params: Promise<{ ticker: string }>; searchParams: Promise<{ q?: string }> }) {
+  const [{ ticker: raw }, { q = "" }] = await Promise.all([params, searchParams]);
+  const ticker = raw.toUpperCase();
+  const definition = getStockDefinition(ticker) ?? { ticker, companyName: ticker, sector: "Technology" as const, logoPath: "" };
+  const now = new Date();
+  const stockResult = await getRwaStock(ticker).catch(() => null);
+  const info = stockResult?.value ?? null;
+  const selected = info ? selectRwaInstrument(info) : null;
+  const [chartResult, newsResult, filingsResult] = await Promise.allSettled([
+    getRwaCandles(ticker, "1h", 120, selected ? { chain: selected.chain, contract: selected.contract } : undefined),
+    getCompanyNews(ticker, new Date(now.getTime() - 14 * 864e5).toISOString().slice(0, 10), now.toISOString().slice(0, 10)),
+    getRecentFilings(ticker),
+  ]);
+  const chart = chartResult.status === "fulfilled" ? chartResult.value : { candles: [], freshness: "delayed" as const, updatedAt: now.toISOString(), source: "Bitget Wallet RWA", error: "Market data unavailable." };
+  const news = newsResult.status === "fulfilled" ? newsResult.value : { items: [], error: "Finnhub news is unavailable." };
+  const filings = filingsResult.status === "fulfilled" ? filingsResult.value.items : [];
+  const instrument: StockWorkspaceInstrument | null = selected ? { symbol: selected.symbol, dataSource: selected.dataSource, productType: selected.productType, chain: selected.chain, contract: selected.contract, latestPrice: selected.latestPrice, absoluteChange: selected.absoluteChange, percentageChange: selected.percentageChange, marketStatus: selected.marketStatus, marketStatusTitle: selected.marketStatusTitle } : null;
+  const tradeUrl = publicEnv().NEXT_PUBLIC_BITGET_REDIRECT_URL || "https://www.bitget.com/";
+
+  return <StockResearchWorkspace ticker={ticker} companyName={info?.name || definition.companyName} logoPath={definition.logoPath} instrument={instrument} price={info?.latest_price || selected?.latestPrice} absoluteChange={info?.price_24h_change || selected?.absoluteChange} percentageChange={info?.price_24h_change_ratio || selected?.percentageChange} marketStatus={selected?.marketStatusTitle} updatedAt={chart.updatedAt} chart={chart} news={news.items} newsError={news.error} filings={filings} tradeUrl={tradeUrl} initialQuestion={q} />;
+}
