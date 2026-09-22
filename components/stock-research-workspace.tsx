@@ -4,6 +4,7 @@ import { useCallback, useMemo, useState } from "react";
 import Link from "next/link";
 import { ArrowLeft, ArrowUpRight, Bookmark, Check, ExternalLink, FileText, MessageCircle, Newspaper, ShieldCheck } from "lucide-react";
 import { useAuth } from "@/components/auth-context";
+import { Brand } from "@/components/brand";
 import { MarketChart, type MarketChartPayload } from "@/components/market-chart";
 import { StockChat } from "@/components/stock-chat";
 import { tickerMonogram } from "@/lib/stocks";
@@ -118,7 +119,7 @@ export function StockResearchWorkspace({ ticker, companyName, logoPath, instrume
   return <main className={`stock-research-page${chatOpen ? " has-stock-chat" : ""}`}>
     <header className="stock-research-nav">
       <Link href="/desk" className="stock-back-link"><ArrowLeft size={15} /> Back to Desk</Link>
-      <span className="stock-nav-title">Fisk · AI Market Intelligence</span>
+      <Brand />
       <Link href="/watchlist" className="stock-nav-link">Watchlist</Link>
     </header>
 
