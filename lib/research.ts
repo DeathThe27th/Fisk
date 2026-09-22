@@ -3,7 +3,6 @@ import { getRtokenMapping, getRtokenTransactions, getRwaCandles, getRwaStock } f
 import { getCompanyNews } from "@/lib/providers/finnhub";
 import { getCompanyFacts, getRecentFilings } from "@/lib/providers/sec";
 import { synthesizeResearch } from "@/lib/ai/qwen";
-import type { ResearchAttachment } from "@/lib/research-attachments";
 import type { Evidence, ResearchResult } from "@/lib/types";
 
 export const ResearchRequestSchema=z.object({query:z.string().min(8).max(1200),ticker:z.string().regex(/^[A-Za-z.]{1,8}$/).default("NVDA"),attachments:z.array(z.object({name:z.string().min(1).max(180),type:z.string().max(120),size:z.number().int().nonnegative().max(8*1024*1024),text:z.string().min(1).max(45_000)})).max(4).default([])});

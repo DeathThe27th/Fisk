@@ -20,6 +20,12 @@ function objectList(value:unknown){
   return Array.isArray(value)?value.filter((item):item is Record<string,unknown>=>Boolean(item)&&typeof item==="object"):[];
 }
 
+function providerError(error: unknown) {
+  const message = error instanceof Error ? error.message : "Unknown synthesis error";
+  if (/<!doctype|unexpected token/i.test(message)) return "The AI synthesis endpoint returned an unreadable upstream response.";
+  return message;
+}
+
 function normalizeDirection(value:unknown){
   const direction=typeof value==="string"?value.toLowerCase().trim():"";
   if(positiveDirections.has(direction))return "positive" as const;
@@ -51,7 +57,12 @@ export async function synthesizeResearch(query:string,evidence:Evidence[],activi
     enable_thinking: false,
     response_format: { type: "json_object" },
   };
-  const response=await qwen().chat.completions.create(parameters);
+  let response;
+  try {
+    response=await qwen().chat.completions.create(parameters);
+  } catch (error) {
+    throw new Error(providerError(error));
+  }
   if(response.choices[0]?.finish_reason==="length")throw new Error("Qwen reached the answer token limit before completing its research JSON.");
   const content=response.choices[0]?.message.content;if(!content)throw new Error("Qwen returned no synthesis.");
   const raw=content.trim().replace(/^```(?:json)?\s*/i,"").replace(/\s*```$/,"");

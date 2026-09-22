@@ -8,6 +8,7 @@ import { FiskAvatar } from "@/components/fisk-cat";
 import { FiskCornerCameo } from "@/components/fisk-corner-cameo";
 import { ResearchResultView } from "@/components/research-result-view";
 import type { ResearchResult } from "@/lib/types";
+import { readApiResponse } from "@/lib/client-api";
 
 export function StockChat({ ticker, companyName = ticker, initialQuestion = "", context = "", onOpenChange }: { ticker: string; companyName?: string; initialQuestion?: string; context?: string; onOpenChange?: (open: boolean) => void }) {
   const [open, setOpen] = useState(Boolean(initialQuestion));
@@ -36,8 +37,7 @@ export function StockChat({ ticker, companyName = ticker, initialQuestion = "", 
       form.append("ticker", ticker);
       attachments.forEach((file) => form.append("attachments", file));
       const response = await fetch("/api/research", { method: "POST", body: form });
-      const body = await response.json();
-      if (!response.ok) throw new Error(body.error || "Research failed");
+      const body = await readApiResponse<{ result: ResearchResult }>(response, "Research could not be completed");
       if (mounted.current && id === requestId.current) setResult(body.result);
     } catch (value) {
       if (mounted.current && id === requestId.current) setError(value instanceof Error ? value.message : "Research is unavailable.");

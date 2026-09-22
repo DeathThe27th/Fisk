@@ -8,6 +8,7 @@ import { Brand } from "@/components/brand";
 import { MarketChart, type MarketChartPayload } from "@/components/market-chart";
 import { StockChat } from "@/components/stock-chat";
 import { tickerMonogram } from "@/lib/stocks";
+import { readApiResponse } from "@/lib/client-api";
 import type { NewsItem } from "@/lib/types";
 
 export type StockWorkspaceInstrument = {
@@ -107,9 +108,9 @@ export function StockResearchWorkspace({ ticker, companyName, logoPath, instrume
       const response = await fetch("/api/watchlist", {
         method: saved ? "DELETE" : "POST",
         headers: { "Content-Type": "application/json", ...(token ? { Authorization: `Bearer ${token}` } : {}) },
-        body: JSON.stringify({ ticker, asset_type: "stock" }),
+      body: JSON.stringify({ ticker, asset_type: "equity" }),
       });
-      if (!response.ok) throw new Error((await response.json()).error || "Could not update your watchlist.");
+      await readApiResponse(response, "Could not update your watchlist.");
       setSaved((value) => !value);
     } catch (error) {
       setSaveError(error instanceof Error ? error.message : "Could not update your watchlist.");
