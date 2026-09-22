@@ -8,7 +8,7 @@ import "./editorial.css";
 import "./desk-discovery.css";
 import "./stock-research.css";
 import "./account.css";
-import "@designcodeio/threeui/style.css";
+import "./performance.css";
 import { Providers } from "@/components/providers";
 import { FiskRouteTransition } from "@/components/fisk-route-transition";
 

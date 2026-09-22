@@ -1,0 +1,33 @@
+/* Keep below-the-fold editorial sections out of the first render while preserving their layout. */
+.editorial-site > section:not(.ed-hero) {
+  content-visibility: auto;
+  contain-intrinsic-size: 900px;
+}
+
+/* A desk has many independent cards; let the browser skip work outside the viewport. */
+.stock-card-grid > article.stock-card-reveal {
+  content-visibility: auto;
+  contain-intrinsic-size: 380px;
+}
+
+@media (max-width: 700px) {
+  .ed-hero > .shader-animation-root {
+    display: none;
+  }
+
+  /* Blur is decorative here and disproportionately expensive on small GPUs. */
+  .ed-nav,
+  .stock-research-nav,
+  .stock-chat-panel,
+  .fisk-conversation,
+  .stock-search-dialog > section {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stock-card-grid > article.stock-card-reveal {
+    content-visibility: visible;
+  }
+}

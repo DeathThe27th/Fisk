@@ -1,18 +1,35 @@
 "use client";
 
-import { useRef, useState, type ReactNode } from "react";
+import dynamic from "next/dynamic";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import Link from "next/link";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { ArrowRight, ArrowUpRight, FileText, Menu, Minus, Newspaper, Plus, Search, X } from "lucide-react";
 import { Brand } from "@/components/brand";
 import { FiskCatMark } from "@/components/fisk-cat";
 import { AuthButton } from "@/components/auth-button";
-import { ShaderAnimation } from "@/components/ui/shader-animation";
 import { FiskCornerCameo } from "@/components/fisk-corner-cameo";
 import type { NewsItem } from "@/lib/types";
 
+const DeferredShaderAnimation = dynamic(() => import("@/components/ui/shader-animation").then((module) => module.ShaderAnimation), { ssr: false });
 const deskLink=(q:string)=>`/desk?q=${encodeURIComponent(q)}`;
 const ease=[0.22,1,0.36,1] as const;
+
+function DesktopHeroShader() {
+  const [enabled, setEnabled] = useState(false);
+
+  useEffect(() => {
+    const media = window.matchMedia("(min-width: 768px) and (prefers-reduced-motion: no-preference)");
+    const connection = (navigator as Navigator & { connection?: { saveData?: boolean; effectiveType?: string } }).connection;
+    const update = () => setEnabled(media.matches && !connection?.saveData && !["slow-2g", "2g"].includes(connection?.effectiveType ?? ""));
+    update();
+    media.addEventListener("change", update);
+    return () => media.removeEventListener("change", update);
+  }, []);
+
+  return enabled ? <DeferredShaderAnimation /> : null;
+}
+
 export function Reveal({children,className="",delay=0}:{children:ReactNode;className?:string;delay?:number}){
   const reduced=useReducedMotion();
   return <motion.div className={className} initial={false} whileInView={reduced?{}:{opacity:[0.35,1],y:[32,0]}} viewport={{once:true,amount:0.15}} transition={{duration:0.7,delay,ease}}>{children}</motion.div>;
@@ -21,7 +38,7 @@ export function Pill({children,href,className=""}:{children:ReactNode;href:strin
 export function PhotographicHero(){
   const reduced=useReducedMotion();const [menu,setMenu]=useState(false);
   return <section className="ed-hero">
-    <ShaderAnimation/><div className="ed-hero-shade"/>
+    <DesktopHeroShader/><div className="ed-hero-shade"/>
     <header className="ed-nav"><Brand inverse/><nav aria-label="Main navigation"><Link className="active" href="#research">Research</Link><Link href="#news">Newsroom</Link><Link href="/desk">Desk</Link></nav><div className="ed-nav-actions"><AuthButton className="ed-nav-signin"/><button className="ed-nav-menu-button" aria-label={menu?"Close navigation":"Open navigation"} aria-expanded={menu} onClick={()=>setMenu(!menu)}>{menu?<X size={20}/>:<Menu size={20}/>}</button></div></header>
     {menu&&<nav className="ed-menu" aria-label="Expanded navigation">{[["Research","#research"],["Newsroom","#news"],["Desk","/desk"]].map(([label,href])=><Link key={label} href={href} onClick={()=>setMenu(false)}>{label}<ArrowUpRight size={16}/></Link>)}<AuthButton/></nav>}
     <div className="ed-hero-bottom ed-shell"><div className="ed-hero-copy"><motion.h1 initial={false} animate={reduced?{}:{opacity:[0.3,1],y:[12,0]}} transition={{duration:0.7,ease}}>Meet Fisk.<br/>Your real-time research partner.</motion.h1><p>Your AI research partner for live questions, paper trails, and useful next steps.<br className="ed-desktop-break"/> Evidence first. Your call.</p><div className="ed-hero-cta"><Pill href="/desk" className="ed-pill-white">Enter the desk</Pill><AuthButton className="ed-hero-signin">Sign in</AuthButton></div></div></div>
