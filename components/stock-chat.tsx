@@ -5,18 +5,25 @@ import { AnimatePresence, motion } from "motion/react";
 import { X } from "lucide-react";
 import { PromptInput } from "@/components/ui/ai-chat-input";
 import { FiskAvatar } from "@/components/fisk-cat";
+import { FiskCornerCameo } from "@/components/fisk-corner-cameo";
 import type { ResearchResult } from "@/lib/types";
 
-export function StockChat({ ticker, companyName = ticker, initialQuestion = "", context = "" }: { ticker: string; companyName?: string; initialQuestion?: string; context?: string }) {
+export function StockChat({ ticker, companyName = ticker, initialQuestion = "", context = "", onOpenChange }: { ticker: string; companyName?: string; initialQuestion?: string; context?: string; onOpenChange?: (open: boolean) => void }) {
   const [open, setOpen] = useState(Boolean(initialQuestion));
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [result, setResult] = useState<ResearchResult | null>(null);
   const submittedInitial = useRef(false);
+  const requestId = useRef(0);
+  const mounted = useRef(true);
+
+  useEffect(() => () => { mounted.current = false; }, []);
+  useEffect(() => { onOpenChange?.(open); }, [onOpenChange, open]);
 
   const submit = useCallback(async (value: string) => {
     const query = value.trim();
     if (!query) return;
+    const id = ++requestId.current;
     setOpen(true);
     setLoading(true);
     setError("");
@@ -25,11 +32,11 @@ export function StockChat({ ticker, companyName = ticker, initialQuestion = "", 
       const response = await fetch("/api/research", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ query: enrichedQuery, ticker }) });
       const body = await response.json();
       if (!response.ok) throw new Error(body.error || "Research failed");
-      setResult(body.result);
+      if (mounted.current && id === requestId.current) setResult(body.result);
     } catch (value) {
-      setError(value instanceof Error ? value.message : "Research is unavailable.");
+      if (mounted.current && id === requestId.current) setError(value instanceof Error ? value.message : "Research is unavailable.");
     } finally {
-      setLoading(false);
+      if (mounted.current && id === requestId.current) setLoading(false);
     }
   }, [context, ticker]);
 
@@ -56,6 +63,6 @@ export function StockChat({ ticker, companyName = ticker, initialQuestion = "", 
       <div>{loading ? <div className="stock-chat-loading" role="status"><FiskAvatar state="analysing" large /><p>Researching sources…</p><span>Checking reporting, filings, and counter-evidence.</span></div> : result ? <article><h2>{result.directAnswer}</h2><p>{result.thesis}</p>{result.keyFindings.slice(0, 4).map((item) => <p key={item.claim}>{item.claim}</p>)}</article> : <article><h2>What do you want to know?</h2><p>I’ll connect the chart to reporting, filings, and the argument on the other side.</p></article>}{error && <p role="alert">{error}</p>}</div>
       <PromptInput onSubmit={(value) => submit(value)} disabled={loading} placeholder={`Ask Fisk about ${companyName}…`} />
     </motion.aside>}</AnimatePresence>
-    {!open && <button className="stock-chat-trigger" type="button" onClick={() => setOpen(true)}>Ask Fisk about {ticker}</button>}
+    {!open && <div className="stock-chat-cameo"><FiskCornerCameo className="is-staged" onActivate={() => setOpen(true)} label={`Ask about ${ticker}`} ariaLabel={`Ask Fisk about ${companyName}`} /></div>}
   </>;
 }

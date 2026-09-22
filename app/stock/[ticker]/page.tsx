@@ -24,7 +24,9 @@ export default async function StockPage({ params, searchParams }: { params: Prom
   const news = newsResult.status === "fulfilled" ? newsResult.value : { items: [], error: "Finnhub news is unavailable." };
   const filings = filingsResult.status === "fulfilled" ? filingsResult.value.items : [];
   const instrument: StockWorkspaceInstrument | null = selected ? { symbol: selected.symbol, dataSource: selected.dataSource, productType: selected.productType, chain: selected.chain, contract: selected.contract, latestPrice: selected.latestPrice, absoluteChange: selected.absoluteChange, percentageChange: selected.percentageChange, marketStatus: selected.marketStatus, marketStatusTitle: selected.marketStatusTitle } : null;
+  const chartPrice = chart.candles.at(-1)?.close;
+  const displayPrice = chartPrice !== undefined ? String(chartPrice) : selected?.latestPrice || info?.latest_price;
   const tradeUrl = publicEnv().NEXT_PUBLIC_BITGET_REDIRECT_URL || "https://www.bitget.com/";
 
-  return <StockResearchWorkspace ticker={ticker} companyName={info?.name || definition.companyName} logoPath={definition.logoPath} instrument={instrument} price={info?.latest_price || selected?.latestPrice} absoluteChange={info?.price_24h_change || selected?.absoluteChange} percentageChange={info?.price_24h_change_ratio || selected?.percentageChange} marketStatus={selected?.marketStatusTitle} updatedAt={chart.updatedAt} chart={chart} news={news.items} newsError={news.error} filings={filings} tradeUrl={tradeUrl} initialQuestion={q} />;
+  return <StockResearchWorkspace ticker={ticker} companyName={info?.name || definition.companyName} logoPath={definition.logoPath} instrument={instrument} price={displayPrice} absoluteChange={selected?.absoluteChange || info?.price_24h_change} percentageChange={selected?.percentageChange || info?.price_24h_change_ratio} marketStatus={selected?.marketStatusTitle} updatedAt={chart.updatedAt} chart={chart} news={news.items} newsError={news.error} filings={filings} tradeUrl={tradeUrl} initialQuestion={q} />;
 }

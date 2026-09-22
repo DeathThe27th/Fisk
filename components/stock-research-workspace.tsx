@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import Link from "next/link";
 import { ArrowLeft, ArrowUpRight, Bookmark, Check, ExternalLink, FileText, MessageCircle, Newspaper, ShieldCheck } from "lucide-react";
 import { useAuth } from "@/components/auth-context";
@@ -85,6 +85,7 @@ export function StockResearchWorkspace({ ticker, companyName, logoPath, instrume
   const { authenticated, login, getAccessToken } = useAuth();
   const [selectedId, setSelectedId] = useState(news[0]?.id ?? "");
   const [saved, setSaved] = useState(false);
+  const [chatOpen, setChatOpen] = useState(Boolean(initialQuestion));
   const [saveError, setSaveError] = useState("");
   const selectedNews = useMemo(() => news.find((item) => item.id === selectedId) ?? news[0] ?? null, [news, selectedId]);
   const relatedNews = useMemo(() => news.filter((item) => item.id !== selectedNews?.id).slice(0, 4), [news, selectedNews]);
@@ -92,6 +93,7 @@ export function StockResearchWorkspace({ ticker, companyName, logoPath, instrume
   const marketLabel = productLabel(instrument);
   const context = `Company: ${companyName} (${ticker}). Bitget instrument: ${instrumentName}. Product type: ${marketLabel}. Price source: ${chart.source}. Current price: ${formatPrice(price)}. Chart interval: 1h.${selectedNews ? ` Selected story: ${selectedNews.headline} (${selectedNews.sourceUrl}).` : ""}`;
   const SaveIcon = saved ? Check : Bookmark;
+  const handleChatOpenChange = useCallback((open: boolean) => setChatOpen(open), []);
 
   async function toggleSaved() {
     if (!authenticated) {
@@ -113,7 +115,7 @@ export function StockResearchWorkspace({ ticker, companyName, logoPath, instrume
     }
   }
 
-  return <main className="stock-research-page">
+  return <main className={`stock-research-page${chatOpen ? " has-stock-chat" : ""}`}>
     <header className="stock-research-nav">
       <Link href="/desk" className="stock-back-link"><ArrowLeft size={15} /> Back to Desk</Link>
       <span className="stock-nav-title">Fisk · AI Market Intelligence</span>
@@ -145,6 +147,6 @@ export function StockResearchWorkspace({ ticker, companyName, logoPath, instrume
 
       <section className="stock-support-grid"><article className="stock-support-panel"><header><div><span>Primary evidence</span><h2>Official filings</h2></div><span>SEC EDGAR</span></header>{filings.length ? filings.slice(0, 6).map((filing) => <a className="stock-filing-row" href={filing.sourceUrl} target="_blank" rel="noreferrer" key={filing.id}><b>{filing.form}</b><span>{filing.title || "Company filing"}</span><small>{filing.filedAt.slice(0, 10)}</small><ExternalLink size={13} /></a>) : <p className="stock-support-empty"><FileText size={18} /> No recent filings available for this ticker.</p>}</article><article className="stock-support-panel stock-decision-panel"><header><div><span>Decision boundary</span><h2>Evidence stays attached.</h2></div><ShieldCheck size={20} /></header><p>Fisk keeps the company, instrument, source and freshness visible so a market view never gets mistaken for certainty.</p><dl><div><dt>Chart source</dt><dd>{chart.source}</dd></div><div><dt>Instrument</dt><dd>{instrumentName}</dd></div><div><dt>Data state</dt><dd>{chart.freshness}</dd></div></dl></article></section>
     </div>
-    <StockChat ticker={ticker} companyName={companyName} initialQuestion={initialQuestion} context={context} />
+    <StockChat ticker={ticker} companyName={companyName} initialQuestion={initialQuestion} context={context} onOpenChange={handleChatOpenChange} />
   </main>;
 }
