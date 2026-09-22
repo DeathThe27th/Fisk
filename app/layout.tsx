@@ -12,11 +12,11 @@ import { Providers } from "@/components/providers";
 import { FiskRouteTransition } from "@/components/fisk-route-transition";
 
 export const metadata: Metadata = {
-  title: "Fisk — AI Market Intelligence",
-  description: "Evidence-led market research for US equities and their tokenized counterparts.",
+  title: "Fisk — Your real-time research partner",
+  description: "Fisk connects live market context, reporting, filings, and your own documents into a cited research answer.",
   metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000"),
   icons: { icon: "/icon.svg?v=2" },
-  openGraph: { title: "Fisk — See what the market is missing", description: "AI market intelligence with evidence, counterarguments, and human final control.", type: "website" },
+  openGraph: { title: "Fisk — Your real-time research partner", description: "AI research with evidence, counterarguments, and useful next steps. You make the final call.", type: "website" },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

@@ -24,6 +24,7 @@
     "motion": "latest",
     "next": "15.5.25",
     "openai": "^7.15.0",
+    "pdf-parse": "^2.4.5",
     "react": "19.1.1",
     "react-dom": "19.1.1",
     "three": "^0.186.0",

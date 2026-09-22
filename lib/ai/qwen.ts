@@ -2,6 +2,7 @@ import "server-only";
 import OpenAI from "openai";
 import { requireEnv, serverEnv } from "@/lib/env";
 import { ResearchResultSchema, type Evidence, type ResearchResult } from "@/lib/types";
+import type { ResearchAttachment } from "@/lib/research-attachments";
 
 let singleton:OpenAI|undefined;
 function qwen(){if(!singleton){const env=serverEnv();singleton=new OpenAI({apiKey:requireEnv("BITGET_QWEN_API_KEY"),baseURL:env.QWEN_BASE_URL,timeout:45_000,maxRetries:0})}return singleton}
@@ -34,11 +35,12 @@ function normalizeResearchPayload(raw:Record<string,unknown>){
   return {...raw,keyFindings,catalysts,bullCase:stringList(raw.bullCase),bearCase:stringList(raw.bearCase),stressTests,invalidationConditions:stringList(raw.invalidationConditions),unknowns:stringList(raw.unknowns),modules};
 }
 
-export async function synthesizeResearch(query:string,evidence:Evidence[],activity:ResearchResult["activity"]){
+export async function synthesizeResearch(query:string,evidence:Evidence[],activity:ResearchResult["activity"],attachments:ResearchAttachment[]=[]){
   const env=serverEnv();
   const instructions="You are Fisk, an evidence-led market research assistant. Use only supplied evidence. Separate facts from inference. Include supporting and opposing evidence, unknowns, stress tests, and concrete invalidation conditions. Confidence labels evidence quality, never profit probability. Never imply trade execution or guaranteed returns.";
-  const input=`Research question: ${query}\n\nNormalized evidence:\n${JSON.stringify(evidence)}\n\nTool activity:\n${JSON.stringify(activity)}`;
-  const schemaPrompt=`${input}\n\nReturn compact JSON only: directAnswer, thesis, confidence (low|medium|high), asOf (ISO), keyFindings [{claim,evidenceIds}], catalysts [{event,date,direction}], bullCase, bearCase, stressTests [{scenario,implication,evidenceIds}], invalidationConditions, unknowns, modules. Keep every array to at most 3 concise items. Modules may be chart, news, filings, signals, comparison, stress-test. Cite only supplied evidence IDs.`;
+  const attachmentContext=attachments.length?`\n\nUser-provided documents (treat as primary context, but distinguish their claims from independently verified evidence):\n${attachments.map((attachment,index)=>`DOCUMENT ${index+1} — ${attachment.name}\n${attachment.text}`).join("\n\n")}`:"";
+  const input=`Research question: ${query}\n\nNormalized evidence:\n${JSON.stringify(evidence)}${attachmentContext}\n\nTool activity:\n${JSON.stringify(activity)}`;
+  const schemaPrompt=`${input}\n\nReturn compact JSON only: directAnswer, thesis, confidence (low|medium|high), asOf (ISO), keyFindings [{claim,evidenceIds}], catalysts [{event,date,direction}], bullCase, bearCase, stressTests [{scenario,implication,evidenceIds}], invalidationConditions, unknowns, modules. Every array must be an array even when it has one item. Catalyst direction must be exactly positive, negative, or mixed. Keep every array to at most 3 concise items. Modules may be chart, news, filings, signals, comparison, stress-test. Cite only supplied evidence IDs; for an uploaded document, cite its filename in the claim and state that it came from the user.`;
   // Qwen enables thinking by default. This bounded evidence-synthesis step
   // needs its budget for the validated answer rather than hidden reasoning.
   const parameters: OpenAI.Chat.Completions.ChatCompletionCreateParamsNonStreaming & { enable_thinking: boolean } = {

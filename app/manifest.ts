@@ -1,2 +1,2 @@
 import type { MetadataRoute } from "next";
-export default function manifest():MetadataRoute.Manifest{return{name:"Fisk — AI Market Intelligence",short_name:"Fisk",description:"Evidence-led market research for equities and tokenized counterparts.",start_url:"/",display:"standalone",background_color:"#f2f2f2",theme_color:"#0b1b46",icons:[{src:"/icon.svg?v=2",sizes:"any",type:"image/svg+xml"}]}}
+export default function manifest():MetadataRoute.Manifest{return{name:"Fisk — Your real-time research partner",short_name:"Fisk",description:"Cited, real-time market research with sources, documents, and useful next steps.",start_url:"/",display:"standalone",background_color:"#f2f2f2",theme_color:"#0b1b46",icons:[{src:"/icon.svg?v=2",sizes:"any",type:"image/svg+xml"}]}}

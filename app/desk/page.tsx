@@ -35,7 +35,7 @@ export default async function Desk({ searchParams }: { searchParams: Promise<{ q
   return <main className="fisk-desk">
     <header className="fisk-desk-nav">
       <Brand />
-      <nav aria-label="Desk navigation"><Link className="active" href="/desk">Desk</Link><Link href="/watchlist">Watchlist</Link><Link href="/journal">Journal</Link><Link href="/methodology">Methodology</Link></nav>
+      <nav aria-label="Desk navigation"><Link className="active" href="/desk">Desk</Link><Link href="/watchlist">Watchlist</Link><Link href="/journal">Journal</Link></nav>
       <div className="desk-nav-actions"><AuthButton className="desk-signin" /></div>
     </header>
     <DeskWorkspace initialQuestion={q} stocks={stocks} />
